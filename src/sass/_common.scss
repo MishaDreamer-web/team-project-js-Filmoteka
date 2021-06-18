@@ -1,0 +1,28 @@
+//Перменные жирности текста
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  min-width: 320px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.list {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
