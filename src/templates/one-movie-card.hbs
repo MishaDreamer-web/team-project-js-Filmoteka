@@ -1,17 +1,19 @@
 {{#each this}}
-  <li class='movie-card'>
+  <li class='movie-card list'>
     <img
       class='movie-card__img'
       src='https://image.tmdb.org/t/p/original{{poster_path}}'
       alt='{{title}}'
     />
     <h2 class='movie-card__title'>{{title}}</h2>
-    <ul class='movie-card__genres'>
-      {{#each genres}}
-        <li>{{name}}</li>
-      {{/each}}
-    </ul>
-    <p class='movie-card__date'>| {{first_air_date}}</p>
-    <span class='movie-card_rating'>{{vote_average}}</span>
+    <div class='movie-card__info'>
+      <ul class='movie-card__genres list'>
+        {{#each genres}}
+          <li class='list'>{{name}}</li>
+        {{/each}}
+      </ul>
+      <p class='movie-card__date'>| {{first_air_date}}</p>
+      <span class='movie-card__rating'>{{vote_average}}</span>
+    </div>
   </li>
 {{/each}}
