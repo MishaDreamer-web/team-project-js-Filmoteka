@@ -1,0 +1,48 @@
+{{!-- <ul class="gallery"> --}}
+   {{!-- {{#each this}} --}}
+   <div class="modal-window">
+      <div class="film-card">
+         <img class="film-img" src="https://image.tmdb.org/t/p/w500{{[0].poster_path}}" alt="{{[0].title}}" />
+
+         <div class="film-info-block">
+            <h2 class="film-title">{{[0].title}}</h2>
+            <div class="film-info">
+               {{!-- <p class="film-info-item">
+                  Vote / Votes <span class="film-info-text">{{[0].vote_average}}/{{[0].vote_count}}</span>
+               </p> --}}
+               {{!-- <p class="film-info-item">
+                  Popularity <span class="film-info-text"> {{[0].popularity}}</span>
+               </p> --}}
+               {{!-- <p class="film-info-item">
+                  Original title <span class="film-info-text">{{[0].original_title}}</span>
+               </p> --}}
+               {{!-- <p class="film-info-item">
+                  Genre {{#each this}}<span class="">{{[0].genre_ids}}{{/each}}</span>
+               </p> --}}
+               <div class="film-info-text">
+                  <p class="film-info-item">Vote / Votes</p>
+                  <p class="film-info-item">Popularity</p>
+                  <p class="film-info-item">Original title</p>
+                  <p class="film-info-item">Genre</p>
+               </div>
+               <div class="film-info-text-render">
+                  <p class="film-info-text-rendered">{{[0].vote_average}} / {{[0].vote_count}}</p>
+                  <p class="film-info-text-rendered"> {{[0].popularity}}</p>
+                  <p class="film-info-text-rendered">{{[0].original_title}}</p>
+                  {{!-- {{#each this}}<p class="film-info-text-rendered">{{[0].genre_ids}}{{/each}}</p> --}}
+               </div>
+            </div>
+            <p class="film-about">about</p>
+            <p class="film-overview">{{[0].overview}}</p>
+            <div class="button-block"> 
+               <button class="add-to-watched">ADD TO WATCHED</button>
+               <button class="add-to-queue">ADD TO QUEUE</button>
+            </div>
+           
+         </div>
+         
+      </div>
+   </div>
+   {{!-- {{/each}} --}}
+   {{!--
+</ul> --}}
