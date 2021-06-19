@@ -2,6 +2,11 @@
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 
+//Перменные размера устройства
+$width-mobile-version: 480px;
+$width-tablet-version: 768px;
+$width-desktop-version: 1024px;
+
 body {
   font-family: 'Roboto', sans-serif;
   min-width: 320px;

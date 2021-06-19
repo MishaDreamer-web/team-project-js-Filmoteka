@@ -1,8 +1,14 @@
 /*
  * Главный файл стилей.
  * Все паршалы подключаются сюда.
- * пример => @import './example'
-*/
+ */
+
+// Стили для файла с примером HTML-фрагмента
+@import './modal-window';
+
 @import './common';
 @import './components/container';
 @import './components/header';
+@import './main-page';
+@import './one-movie-card.scss';
+@import './footer.scss';

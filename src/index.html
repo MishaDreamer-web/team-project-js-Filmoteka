@@ -17,28 +17,71 @@
     />
   </head>
   <body>
-  <header class="header">
-    <div class="container">
-    <a href="./index.html" class="header-film link">[]<span class="logo-name">Filmoteka</span></a>
-    <nav class="main-nav">
-    <ul class="nav-list list">
-     <li class="nav-item">
-     <a href="./index.html" class="nav-link link"><span class= "nav-link">Home</span></a>
-     </li>
-     <li class="nav-item">
-      <a href="" class="nav-link link"><span class= "nav-link">My Library</span></a>
-     </li>
-    </ul>
-    </nav>
-    <label class="header-field">
-       <span class="header-label"></span>
-          <input class="header-search" type="text" name="search" placeholder="Поиск">
-            <svg class="search-svg">
-                <use href=""></use>
-            </svg>
-   </label>
-    </div>
+    <header class="header">
+      <a href="./index.html" class="header-film link"
+        >[]<span class="logo-name">Filmoteka</span></a
+      >
+      <nav class="main-nav">
+        <ul class="nav-list list">
+          <li class="nav-item">
+            <a href="./index.html" class="nav-link link"
+              ><span class="nav-link">Home</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link link"
+              ><span class="nav-link">My Library</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+      <label class="header-field">
+        <span class="header-label"></span>
+        <input
+          class="header-search"
+          type="text"
+          name="search"
+          placeholder="Поиск"
+        />
+        <svg class="search-svg">
+          <use href=""></use>
+        </svg>
+      </label>
     </header>
+
+    <include src="./partials/my_library.html"></include>
+
+    <form class="search-form" id="search-form">
+      <div>
+        <label for="searchQuery"></label>
+        <input
+          type="text"
+          class="image-query js-input-image-query"
+          name="query"
+          id="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+      </div>
+    </form>
+
+    <div class="film-body">
+      <div class="render-result js-render-result"></div>
+    </div>
+
+    <div class="loader-ellips is-hidden">
+      <span class="loader-ellips__dot"></span>
+      <span class="loader-ellips__dot"></span>
+      <span class="loader-ellips__dot"></span>
+      <span class="loader-ellips__dot"></span>
+    </div>
+    <div class="container">
+      <ul class="gallery list">
+        <!-- Список <li> с карточками -->
+      </ul>
+    </div>
+
+    <include src="./partials/footer.html"></include>
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
   </body>
