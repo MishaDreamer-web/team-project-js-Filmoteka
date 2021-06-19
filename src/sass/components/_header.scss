@@ -1,0 +1,132 @@
+.header {
+  background: rgba(0, 0, 0, 0.56);
+  padding-top: 0px;
+  height: 230px;
+
+  margin: 0 auto;
+  max-width: 1600px;
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  // width: 100%;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-top: 58px;
+}
+
+.nav-item {
+  position: relative;
+
+  &:not(:first-child) {
+    margin-left: 40px;
+  }
+}
+
+
+
+.header-film{
+  margin-top: 48px;
+  display: none;
+}
+
+.logo-name {
+  display: none;
+}
+
+.nav-link {
+  padding: 10px 0 10px 0;
+  // display: flex;
+  // align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: auto;
+ 
+  color: #FFFFFF;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+}
+
+.search-svg {
+  display: none;
+}
+
+.header-search{
+  display: block;
+  margin-top: 41px;
+  width: 100%;
+  max-width: 280px;
+  background: none;
+  border: 0;
+  border-bottom: 0.5px solid #FFFFFF;
+}
+
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url("../images/header/mobile/Film-mob@x1.jpg");
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url("../images/header/mobile/Film-mob@x2.jpg");
+  }
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url("../images/header/tablet/Film-tablet@x1.jpg");
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url("../images/header/tablet/Film-tablet@x2.jpg");
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url("../images/header/desktop/Film-desk@x1.jpg");
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url("../images/header/desktop/Film-desk@x2.jpg");
+    }
+  }
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
