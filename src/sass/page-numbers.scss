@@ -1,0 +1,71 @@
+.page-numbers {
+  padding: 50px;
+}
+.page-numbers__style {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-page1,
+.btn-page2,
+.btn-page3,
+.btn-page4,
+.btn-page5,
+.btn-page {
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+  width: 40px;
+  height: 40px;
+
+  color: #000;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  @media screen and (max-width: 640px) {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.btn-page1:hover,
+.btn-page2:hover,
+.btn-page3:hover,
+.btn-page4:hover,
+.btn-page5:hover,
+.btn-page:hover,
+.btn-page1:focus,
+.btn-page2:focus,
+.btn-page3:focus,
+.btn-page4:focus,
+.btn-page5:focus {
+  transition: 0.5s;
+  background: #ff6b08;
+  color: #ffff;
+  transform: scale(1.05);
+}
+
+.btn-dots {
+  width: 30px;
+  height: 27px;
+  vertical-align: middle;
+  margin-right: 15px;
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
+}
+
+.active {
+  background: #ff6b08;
+  color: #ffff;
+}
+
+.btn-page:hover,
+.btn-page:focus {
+  & .btn-page__icon {
+    fill: currentColor;
+  }
+}
