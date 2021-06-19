@@ -1,0 +1,114 @@
+<article class="example">
+  <h1>HTML-фрагменты</h1>
+
+<h2>тест свг иконок</h2>
+<ul>
+  <li>1
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-arrow-left"></use>
+    </svg>
+  </li>
+  <li>2
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-arrow-right"></use>
+    </svg>
+  </li>
+    <li>3
+      <svg width="40" height="40" aria-label="test">
+        <use class="example-icon" href="./images/sprite.svg#icon-group-arrow1"></use>
+      </svg>
+    </li>
+    <li>4
+      <svg width="40" height="40" aria-label="test">
+        <use class="example-icon" href="./images/sprite.svg#icon-group-arrow2"></use>
+      </svg>
+    </li>
+    <li>5
+      <svg width="40" height="40" aria-label="test">
+        <use class="example-icon" href="./images/sprite.svg#icon-arrow-left1"></use>
+      </svg>
+    </li>
+    <li>6
+      <svg width="40" height="40" aria-label="test">
+        <use class="example-icon" href="./images/sprite.svg#icon-arrow-right1"></use>
+      </svg>
+    </li>
+  <li>7
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-filmoteka"></use>
+    </svg>
+  </li>
+  <li>8
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-logo"></use>
+    </svg>
+  </li>
+  <li>9
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-close"></use>
+    </svg>
+  </li>
+  <li>1o
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-search"></use>
+    </svg>
+  </li>
+  <li>11
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-heart"></use>
+    </svg>
+  </li>
+  <li>12
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-close2"></use>
+    </svg>
+  </li>
+  <li>13
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-search2"></use>
+    </svg>
+  </li>
+    <li>14
+      <svg width="40" height="40" aria-label="test">
+        <use class="example-icon" href="./images/sprite.svg#icon-other-search"></use>
+      </svg>
+    </li>
+  <li>15
+    <svg width="40" height="40" aria-label="test">
+      <use class="example-icon" href="./images/sprite.svg#icon-search2"></use>
+    </svg>
+  </li>
+</ul>
+
+
+
+  <!-- Путь к изображениям из HTML-фрагмента такой, как из файла index.html -->
+  <img src="images/demo.jpg" alt="" width="320" />
+  <p>
+    Плагин
+    <a
+      href="https://github.com/posthtml/posthtml-include"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      posthtml-include
+    </a>
+    позволяет добавлять в HTML-файлы страниц код из других HTML-файлов (фрагментов). Фрагменты
+    хранятся в папке
+    <code>src/partials</code>. Добавление происходит при компиляции файлов страниц, например
+    <code>index.html</code>.
+  </p>
+
+  <p->
+    Этот файл <code>example.html</code> &mdash; пример такого фрагмента, с разметкой определённой
+    части главной страницы. Это очень удобно при командной разработке на студенческих проектах,
+    когда в одном HTML-файле пишет несколько человек сразу.
+  </p>
+
+  <p>
+    Синтаксис добавление фрагмента в главный файл:
+    <code> &lt;include src="./partials/имя-файла.html"&gt;&lt;/include&gt; </code>
+  </p>
+
+  <div class="background"></div>
+</article>
