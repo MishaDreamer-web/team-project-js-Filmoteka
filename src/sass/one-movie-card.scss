@@ -27,14 +27,14 @@ p {
     }
   }
   @media screen and (min-width: 1024px) {
-    width: calc((100% - 3 * 30px) / 4);
+    width: calc((100% - 3 * 30px) / 3);
     margin-right: 30px;
     margin-bottom: 30px;
 
-    &:nth-child(4n) {
+    &:nth-child(3n) {
       margin-right: 0;
     }
-    &:nth-last-child(-n + 4) {
+    &:nth-last-child(-n + 3) {
       margin-bottom: 0;
     }
   }
@@ -47,22 +47,22 @@ p {
 }
 
 .movie-card__img {
-  @media screen and (min-width: 1024px) {
-    height: 280px;
-    width: 186px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    height: 580px;
-    width: 386px;
-  }
-
-  height: 435px;
-  width: 290px;
+  height: 402px;
+  width: 280px;
 
   cursor: pointer;
   border-radius: 5px;
   filter: drop-shadow(4px 4px 4px rgba(55%, 55%, 55%, 0.6));
   box-shadow: 0 0 20px rgba(55%, 55%, 55%, 0.5);
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    height: 398px;
+    width: 293px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 398px;
+    width: 274px;
+  }
 }
 
 .movie-card__info {
