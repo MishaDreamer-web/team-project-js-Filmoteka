@@ -1,16 +1,25 @@
-.footer-container {
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  height: 100px;
-  background: #f7f7f7;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
 
+.footer-container {
   font-style: normal;
+  background: #f7f7f7;
   font-weight: normal;
   font-size: 14px;
   line-height: 1.14;
   color: #545454;
-
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  margin: auto;
   @media screen and (min-width: 768px) {
     height: 77px;
     display: flex;
