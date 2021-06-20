@@ -6,6 +6,7 @@
   margin: 0 auto;
   max-width: 1600px;
 
+<<<<<<< Updated upstream
 .header .container {
   display: flex;
   justify-content: space-between;
@@ -16,6 +17,46 @@
   align-items: center;
   // width: 100%;
 }
+=======
+  .header-container {
+
+    margin: 0 auto;
+    padding: 0 20px;
+
+    &:not(:last-child) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+
+
+  @media screen and (min-width: 320px) {
+    .header-container {
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .header-container {
+      width: $width-tablet-version;
+      padding: 0 70px;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .header-container {
+      width: $width-desktop-version;
+    }
+  }
+
+  .main-nav {
+    display: inline-flex;
+    align-items: center;
+  }
+>>>>>>> Stashed changes
 
 .nav-list {
   display: flex;
@@ -32,17 +73,51 @@
   }
 }
 
+<<<<<<< Updated upstream
+=======
+  // .header-film {
+  //   // margin-top: 48px;
+  //   // display: none;
+  // }
+
+.film-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 45px;
+}
+>>>>>>> Stashed changes
 
 
+<<<<<<< Updated upstream
 .header-film{
   margin-top: 48px;
   display: none;
 }
+=======
+  @media screen and (min-width: 768px) {
+    .logo-name{
+      display: inline-block;
+      font-weight: $font-weight-medium;
+      color: #FFFFFF;
+      font-size: 30px;
+      line-height: 1.7;
+    }
+  }
+
+  
+
+  .nav-link {
+    padding: 10px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: auto;
+>>>>>>> Stashed changes
 
 .logo-name {
   display: none;
 }
 
+<<<<<<< Updated upstream
 .nav-link {
   padding: 10px 0 10px 0;
   // display: flex;
@@ -52,6 +127,26 @@
   margin-left: auto;
  
   color: #FFFFFF;
+=======
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: 0.02em;
+}
+
+.nav-link.current{
+  &::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background: #FF6B08;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    opacity: 1;
+}
+} 
+>>>>>>> Stashed changes
 
   font-weight: 500;
   font-size: 14px;
@@ -59,6 +154,7 @@
   letter-spacing: 0.02em;
 }
 
+<<<<<<< Updated upstream
 .search-svg {
   display: none;
 }
@@ -71,6 +167,35 @@
   background: none;
   border: 0;
   border-bottom: 0.5px solid #FFFFFF;
+}
+=======
+  .header-field {
+   position: relative;
+  }
+
+  .header-search {
+    display: block;
+    margin: 41px auto 0 auto;
+    width: 100%;
+    max-width: 280px;
+    background: none;
+    border: 0;
+    border-bottom: 0.5px solid #ffffff;
+    color: #ffffff;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header-search{
+      max-width: 336px;
+    }
+  }
+>>>>>>> Stashed changes
+
+.button-search {
+  position: absolute;
+    top: 80%;
+    left: 61%;
+
 }
 
   background-image: linear-gradient(
@@ -129,4 +254,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+<<<<<<< Updated upstream
 }
+=======
+  }
+>>>>>>> Stashed changes
