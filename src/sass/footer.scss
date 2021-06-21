@@ -42,28 +42,42 @@ body {
 }
 
 .footer-icon {
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 14px;
-  height: 12px;
+  margin: 0 10px;
+
   fill: #ff6b08;
-  outline: 2px solid red;
+
+  transition: fill 300ms;
+  transform: scale(1.5);
+  animation: heart-animate 1500ms infinite 1500ms;
 }
 
-.footer-link,
-.our-team {
+@keyframes heart-animate {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.footer-button {
   padding-left: 5px;
   padding-right: 5px;
   color: #545454;
   text-decoration: underline;
   transition: background-color 250ms ease-in-out;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
-.footer-link:hover,
-.footer-link:focus,
-.our-team:hover,
-.our-team:focus {
+.footer-button:hover,
+.footer-button:focus {
   background-color: #ff6b08;
   border-radius: 5px;
   color: #fff;
