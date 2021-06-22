@@ -1,0 +1,91 @@
+.my_library-container {
+  background: rgba(0, 0, 0, 0.56);
+  height: 230px;
+  margin: 0 auto;
+  padding-bottom: 65px;
+  max-width: 1600px;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url('../images/header-library/mobile/header-mobile@1px.jpg');
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-library/mobile/header-mobile@2px.jpg');
+  }
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-library/tablet/header-tablet@1px.jpg');
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/header-library/tablet/header-tablet@2px.jpg');
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-library/desktop/header-desktop@1px.jpg');
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/header-library/desktop/header-desktop@2px.jpg');
+    }
+  }
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.buttons {
+  width: 130px;
+  height: 44px;
+  background-color: #ff6b01;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.buttons :not(:last-child) {
+  margin-right: 20px;
+}
+.my_library-navigation {
+  display: flex;
+}
+.navigstion-text {
+  margin-right: auto;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+}
+.navigstion-text :not(:last-child) {
+  margin-right: 39px;
+}
+.my_library-buttons {
+  text-align: center;
+}
