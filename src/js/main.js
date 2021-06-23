@@ -1,14 +1,16 @@
 import FilmsApiService from './filmApiService';
-import filmCardTpl from '../template/modal-window.hbs';
+import filmsCardTpl from '../templates/lightbox.hbs';
 // import imageLightboxTpl from '../template/image-lightbox.hbs';
 import debounce from 'lodash.debounce';
 // import * as basicLightbox from 'basiclightbox';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 
 const refs = {
-  searchFormInput: document.querySelector('.js-input-image-query'),
-  filmsRenderCard: document.querySelector('.js-render-result'),
+  filmsRenderCard: document.querySelector('.lightbox__content'),
   loaderEllips: document.querySelector('.loader-ellips'),
+  lightboxBody: document.querySelector('.js-lightbox'),
+  getMovieId: document.querySelector('.gallery'),
+  closeLightbox: document.querySelector('.lightbox__button'),
 };
 
 const filmsApiService = new FilmsApiService();
@@ -37,38 +39,41 @@ const filmsApiService = new FilmsApiService();
 
 // observer.observe(refs.loaderEllips);
 
-refs.searchFormInput.addEventListener('input', debounce(onSearch, 500));
-// refs.filmsRenderCard.addEventListener('click', setImageLightbox);
+// refs.searchFormInput.addEventListener('input', debounce(onSearch, 500));
+refs.getMovieId.addEventListener('click', onFilmCardClick);
 
-function onSearch(e) {
+function onFilmCardClick(e) {
   e.preventDefault();
-  clearImagesContainer(); //Для очистки соджержимого если инпут пустой
-  filmsApiService.query = e.target.value;
-  if (e.target.value === '') {
+  console.log(e.target.dataset.id);
+  filmsApiService.query = e.target.dataset.id;
+  if (e.target.dataset.id === undefined) {
     return;
   }
-  filmsApiService.resetPage();
+  addLightboxClass();
   filmsApiService
-    .fetchImagesApi()
+    .fetchFilmsApi()
     .then(films => {
       clearImagesContainer();
       addloaderEllipsClass();
       console.log(films);
       renderFilms(films);
+      refs.closeLightbox.addEventListener('click', removeLightboxClass);
     })
     .catch(onFetchError)
     .finally(removeloaderEllipsClass());
 }
 
 function renderFilms(films) {
-  refs.filmsRenderCard.insertAdjacentHTML('beforeend', filmCardTpl(films));
+  refs.filmsRenderCard.insertAdjacentHTML('beforeend', filmsCardTpl(films));
 }
 
 function onFetchError(err) {
   //   error({
   //     title: 'Error. Something went wrong. Try again later or reload the page',
   //   });
-  console.log('Error. Something went wrong. Try again later or reload the page');
+  console.log(
+    'Error. Something went wrong. Try again later or reload the page',
+  );
 }
 
 function clearImagesContainer() {
@@ -83,11 +88,14 @@ function removeloaderEllipsClass() {
   refs.loaderEllips.classList.remove('is-hidden');
 }
 
-// function setImageLightbox(e) {
-//   const imageDataAttribute = e.target.dataset;
-//   if (e.target.dataset.src === undefined) {
-//     return;
-//   }
-//   const instance = basicLightbox.create(imageLightboxTpl(imageDataAttribute));
-//   instance.show();
-// }
+function addLightboxClass() {
+  refs.lightboxBody.classList.add('is-open');
+}
+
+function removeLightboxClass() {
+  console.log('Close lightbox');
+  refs.lightboxBody.classList.remove('is-open');
+  refs.closeLightbox.removeEventListener('click', removeLightboxClass);
+}
+
+// Изменил код в своем файле здесь нужно все принять
