@@ -1,19 +1,26 @@
 <div class="my_library-container">
-  <div class="my_library-logo">
-    <svg width="24" height="24">
-      <use href="./images/sprite.svg#icon-logo"></use>
-    </svg>
-    <a class="my_library-logo" href="./index.html">Filmoteka </a>
-  </div>
+  <div class="library-nav">
+    <a class="my_library-logo" href="./index.html">
+      <svg class="logo-img" width="24" height="24">
+        <use href="./images/sprite.svg#icon-logo"></use>
+      </svg>
+      <!-- <span class="text-logo">Filmoteka</span> -->
+      <svg class="logo-img, text-logo" width="141" height="24">
+        <use href="./images/sprite.svg#icon-filmoteka" class=""></use>
+      </svg>
+    </a>
 
-  <ul class="my_library-navigation">
-    <li>
-      <a href=""><span class="navigstion-text">HOME</span></a>
-    </li>
-    <li>
-      <a href=""><span class="navigstion-text">MY LIBRARY</span></a>
-    </li>
-  </ul>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="" class="navigstion-link">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="navigstion-link">MY LIBRARY</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <div class="my_library-buttons">
     <button class="buttons">Watched</button>
