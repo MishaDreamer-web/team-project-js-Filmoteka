@@ -1,3 +1,9 @@
+// переменные для анимации наверное нужно в главный файл перенести
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
 h2,
 p {
   margin: 0;
@@ -5,6 +11,7 @@ p {
 
 .movie-card {
   border-radius: 5px;
+  transition: transform var(--animation-duration) var(--timing-function); // так анимация карточки более плавная
 
   @media screen and (max-width: 767px) {
     display: flex;
@@ -41,8 +48,7 @@ p {
 }
 
 .movie-card:hover {
-  transform: scale(1.05);
-  transition: 0.5s linear;
+  transform: scale(1.03);
   box-shadow: 0 0 30px rgba(255, 107, 8, 1);
 }
 

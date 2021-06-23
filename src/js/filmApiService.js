@@ -4,30 +4,17 @@ const BASE_URL = 'https://api.themoviedb.org';
 export default class FilmsApiService {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
   }
 
-  fetchImagesApi() {
-    const searchParams = new URLSearchParams({
-      api_key: API_KEY,
-      language: 'en-US',
-      page: this.page,
-      per_page: '12',
-      include_adult: false,
-      query: this.searchQuery,
-    });
+  fetchFilmsApi() {
+   
 
-    const url = `${BASE_URL}/3/search/movie?${searchParams}`;
+    const url = `${BASE_URL}/3/movie/${this.searchQuery}?api_key=${API_KEY}&language=en-US`;
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.page += 1;
-        return data.results;
+        return data;
       });
-  }
-
-  resetPage() {
-    this.page = 1;
   }
 
   get query() {
@@ -38,3 +25,5 @@ export default class FilmsApiService {
     this.searchQuery = newQuery;
   }
 }
+
+//Изменил запрос для модального окна
