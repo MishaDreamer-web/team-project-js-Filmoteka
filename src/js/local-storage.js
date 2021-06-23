@@ -8,7 +8,7 @@ const queueBtn = document.querySelector('.libr-queue');
 // console.log('queueBtn', queueBtn);
 
 // надо зацепиться за модалку. класс правильный?
-const modal = document.querySelector('.modal-window');
+const modal = document.querySelector('.lightbox');
 console.log('modal', modal);
 
 // массивы для Watched и Queue
@@ -29,25 +29,25 @@ if (localStorage.getItem('arrayOfQueue') !== null) {
 
 // по модалке уточнить у Виталика?
 modal.addEventListener('click', function () {
-    console.log(event.target.nodeName);
-    console.log('модалка клик');
+  console.log(event.target.nodeName);
+  console.log('модалка клик');
 
   if (event.target.nodeName === 'BUTTON') {
     if (event.target.className === 'btn libr-watched') {
       arrayOfWatched.push(localStorage.getItem('targetModal'));
-      
+
       //просмотр
       console.log(localStorage.getItem('targetModal'));
       console.log('arrayOfWatched:', arrayOfWatched);
-        
+
       localStorage.setItem('arrayOfWatched', JSON.stringify(arrayOfWatched));
     } else {
       arrayOfQueue.push(localStorage.getItem('targetModal'));
-    
+
       //просмотр
       console.log(localStorage.getItem('targetModal'));
       console.log(arrayOfQueue);
-    
+
       localStorage.setItem('arrayOfQueue', JSON.stringify(arrayOfQueue));
     }
   } else {
@@ -57,19 +57,19 @@ modal.addEventListener('click', function () {
 
 // кнопка просмотрено
 watchedBtn.addEventListener('click', function () {
-    // проверить класс
-    const allList = document.querySelectorAll('.gallery');
-    console.log('allList:', allList);
+  // проверить класс
+  const allList = document.querySelectorAll('.gallery');
+  console.log('allList:', allList);
   for (const list of allList) {
     list.remove();
-    }
-// привязать правильный класс
+  }
+  // привязать правильный класс
   const allTitle = document.querySelectorAll('.card-view');
   for (const title of allTitle) {
     title.remove();
   }
-    const watchedList = document.createElement('ul');
-    // проверить класс
+  const watchedList = document.createElement('ul');
+  // проверить класс
   watchedList.setAttribute('class', 'gallery');
   main.appendChild(watchedList);
   let watchedArray = localStorage.getItem('arrayOfWatched');
@@ -85,19 +85,19 @@ watchedBtn.addEventListener('click', function () {
 });
 
 queueBtn.addEventListener('click', function () {
-    // проверить класс
-    const allList = document.querySelectorAll('.gallery');
-    console.log('allList:', allList);
+  // проверить класс
+  const allList = document.querySelectorAll('.gallery');
+  console.log('allList:', allList);
   for (const list of allList) {
     list.remove();
-    }
-// привязать правильный класс
+  }
+  // привязать правильный класс
   const allTitle = document.querySelectorAll('.card-view');
   for (const title of allTitle) {
     title.remove();
   }
-    const queueList = document.createElement('ul');
-    // проверить класс
+  const queueList = document.createElement('ul');
+  // проверить класс
   queueList.setAttribute('class', 'gallery');
   main.appendChild(queueList);
   let queueArray = localStorage.getItem('arrayOfQueue');
@@ -112,6 +112,6 @@ queueBtn.addEventListener('click', function () {
   }
 });
 
-// работающие, проверенные консоли закомментить 
+// работающие, проверенные консоли закомментить
 // после approve - убрать все консоли?
 // отрисовка - кто?
