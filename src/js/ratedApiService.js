@@ -8,7 +8,7 @@ const API_KEY = 'ded12b962797b74c61a2522ada6bc31b';
 const BASE_URL = 'https://api.themoviedb.org/';
 const requestPage = 1;
 
-fetch(`${BASE_URL}3/trending/all/day?api_key=${API_KEY}&page=${requestPage}`)
+fetch(`${BASE_URL}3/trending/movie/day?api_key=${API_KEY}&page=${requestPage}`)
   .then(response => {
     return response.json();
   })
