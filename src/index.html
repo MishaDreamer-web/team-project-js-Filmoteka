@@ -22,14 +22,18 @@
     <header class="header">
       <div class="header-container">
         <a href="./index.html" class="header-film link"
-          >[]<span class="logo-name">Filmoteka</span></a
-        >
+          >
+          <svg class="film-icon">
+            <use href="./images/sprite.svg#icon-logo"></use>
+           </svg>
+          <span class="logo-name">Filmoteka</span>
+          </a>
         <nav class="main-nav">
           <ul class="nav-list list">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link link"
-                ><span class="nav-link">Home</span></a
-              >
+              <a href="./index.html" class="nav-link link">
+                <span class="nav-link current">Home</span>
+              </a>
             </li>
             <li class="nav-item">
               <a href="" class="nav-link link"
@@ -38,19 +42,25 @@
             </li>
           </ul>
         </nav>
-        <label class="header-field">
+      </div>
+      <form action="" class="header-form">
+        <label class="header-label" for="searchQuery">
           <span class="header-label"></span>
           <input
             class="header-search"
             type="text"
-            name="search"
-            placeholder="Поиск"
+            name="query"
+            placeholder="Поиск фильмов"
+            autocomplete="off"
+            id = querySearch
           />
-          <svg class="search-svg">
-            <use href=""></use>
-          </svg>
+          <button class="button-search">
+            <svg class="search-svg" width=12px height=12px>
+              <use href="./images/sprite.svg#icon-search"></use>
+            </svg>
+          </button>    
         </label>
-      </div>
+      </form>
     </header>
 
     <include src="./partials/my_library.html"></include>
