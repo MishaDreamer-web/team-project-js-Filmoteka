@@ -1,7 +1,7 @@
 {{!-- <ul class="gallery"> --}}
    {{!-- {{#each this}} --}}
-   <div class="modal-window">
       <div class="film-card">
+         {{!-- <button type="button" class="lightbox__button" data-action="close-lightbox"></button> --}}
          <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" />
 
          <div class="film-info-block">
@@ -35,14 +35,13 @@
             <p class="film-about">about</p>
             <p class="film-overview">{{overview}}</p>
             <div class="button-block"> 
-               <button class="add-to-watched">ADD TO WATCHED</button>
-               <button class="add-to-queue">ADD TO QUEUE</button>
+               <button class="add-to-watched" data-action="add-to-watched">ADD TO WATCHED</button>
+               <button class="add-to-queue" data-action="add-to-queue">ADD TO QUEUE</button>
             </div>
            
          </div>
          
       </div>
-   </div>
    {{!-- {{/each}} --}}
    {{!--
 </ul> --}}

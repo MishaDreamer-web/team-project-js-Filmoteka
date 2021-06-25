@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import './js/main';
+import './js/lightbox';
 import './js/ratedApiService';
 import './js/local-storage';
 import './js/scroll-up';
