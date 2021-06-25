@@ -73,47 +73,31 @@
     padding-left: 75px;
   }
   .text-logo {
-    visibility: hidden;
     display: none;
 
-    height: 24px;
-    fill: #ffffff;
-
-    @media screen and (min-width: 1024px) {
-      display: block;
-      visibility: visible;
-      text-align: center;
-      align-items: top;
-    }
     @media screen and (min-width: 768px) {
-      display: block;
-      visibility: visible;
+      display: inline-block;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 1.7;
+      color: #ffffff;
     }
   }
   .my_library-logo {
-    text-decoration: none;
-    display: flex;
     padding-top: 46px;
-    // margin-bottom: 51px;
   }
   .logo-img {
-    // margin-bottom: 51px;
-    display: block;
-
+    width: 24px;
     height: 24px;
   }
-  .logo-img:not(:last-child) {
-    margin-right: 0;
-    @media screen and (min-width: 1024px) {
-      margin-right: 10px;
-    }
-    @media screen and (min-width: 768px) {
-      margin-right: 10px;
-    }
-  }
-  // .logo-text {
-  //   height: 24px;
-  //   fill: #ffffff;
+  // .logo-img:not(:last-child) {
+  //   margin-right: 0;
+  //   @media screen and (min-width: 1024px) {
+  //     margin-right: 10px;
+  //   }
+  //   @media screen and (min-width: 768px) {
+  //     margin-right: 10px;
+  //   }
   // }
   .buttons {
     width: 129px;
@@ -150,12 +134,13 @@
     justify-content: space-between;
   }
   .nav {
-    display: flex;
+    display: inline-flex;
     align-items: center;
   }
   .nav-list {
     display: flex;
     margin-left: auto;
+    align-items: center;
   }
   .nav-item {
     padding-top: 58px;
