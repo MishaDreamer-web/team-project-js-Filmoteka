@@ -1,45 +1,21 @@
 import FilmsApiService from './filmApiService';
 import filmsCardTpl from '../templates/lightbox.hbs';
 // import imageLightboxTpl from '../template/image-lightbox.hbs';
-import debounce from 'lodash.debounce';
-// import * as basicLightbox from 'basiclightbox';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 
 const refs = {
   filmsRenderCard: document.querySelector('.lightbox__content'),
   loaderEllips: document.querySelector('.loader-ellips'),
-  lightboxBody: document.querySelector('.js-lightbox'),
+  lightboxContainer: document.querySelector('.js-lightbox'),
+  lightboxOverlay: document.querySelector('[data-action="close-lightbox"]'),
   getMovieId: document.querySelector('.gallery'),
   closeLightbox: document.querySelector('.lightbox__button'),
 };
 
 const filmsApiService = new FilmsApiService();
 
-// const onEntry = entries => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting && filmsApiService.query !== '') {
-//       filmsApiService
-//         .fetchImagesApi()
-//         .then(films => {
-//           addloaderEllipsClass();
-//           //  console.log(films);
-//           renderFilms(films);
-//         })
-//         .catch(onFetchError)
-//         .finally(removeloaderEllipsClass());
-//     }
-//   });
-// };
+document.addEventListener('keydown', closeLightbox);
 
-// const option = {
-//   rootMargin: '250px',
-// };
-
-// const observer = new IntersectionObserver(onEntry, option);
-
-// observer.observe(refs.loaderEllips);
-
-// refs.searchFormInput.addEventListener('input', debounce(onSearch, 500));
 refs.getMovieId.addEventListener('click', onFilmCardClick);
 
 function onFilmCardClick(e) {
@@ -50,6 +26,7 @@ function onFilmCardClick(e) {
     return;
   }
   addLightboxClass();
+
   filmsApiService
     .fetchFilmsApi()
     .then(films => {
@@ -57,7 +34,9 @@ function onFilmCardClick(e) {
       addloaderEllipsClass();
       console.log(films);
       renderFilms(films);
+      document.addEventListener('keydown', closeLightbox);
       refs.closeLightbox.addEventListener('click', removeLightboxClass);
+      refs.lightboxOverlay.addEventListener('click', removeLightboxClass);
     })
     .catch(onFetchError)
     .finally(removeloaderEllipsClass());
@@ -89,13 +68,19 @@ function removeloaderEllipsClass() {
 }
 
 function addLightboxClass() {
-  refs.lightboxBody.classList.add('is-open');
+  refs.lightboxContainer.classList.add('is-open');
 }
 
 function removeLightboxClass() {
   console.log('Close lightbox');
-  refs.lightboxBody.classList.remove('is-open');
+  refs.lightboxContainer.classList.remove('is-open');
   refs.closeLightbox.removeEventListener('click', removeLightboxClass);
+  refs.lightboxOverlay.removeEventListener('click', removeLightboxClass);
 }
 
-// Изменил код в своем файле здесь нужно все принять
+function closeLightbox(e) {
+  if (e.key === 'Escape') {
+    removeLightboxClass();
+    document.removeEventListener('keydown', closeLightbox);
+  }
+}
