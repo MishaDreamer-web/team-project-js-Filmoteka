@@ -1,49 +1,34 @@
-{{!-- <ul class="gallery"> --}}
-   {{!-- {{#each this}} --}}
-      <div class="film-card">
-         <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" id="{{id}}" />
+<div class="film-card">
+   <button type="button" class="lightbox__button" data-action="close-lightbox"></button>
+   <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" />
+   <h2 class="film-title">{{title}}</h2>
+   <div class="film-info-block">
+      <div class="film-info">
 
-         <button type="button" class="lightbox__button" data-action="close-lightbox"></button>
-
-
-         <div class="film-info-block">
-            <h2 class="film-title">{{title}}</h2>
-            <div class="film-info">
-               {{!-- <p class="film-info-item">
-                  Vote / Votes <span class="film-info-text">{{vote_average}}/{{vote_count}}</span>
-               </p> --}}
-               {{!-- <p class="film-info-item">
-                  Popularity <span class="film-info-text"> {{popularity}}</span>
-               </p> --}}
-               {{!-- <p class="film-info-item">
-                  Original title <span class="film-info-text">{{original_title}}</span>
-               </p> --}}
-               {{!-- <p class="film-info-item">
-                  Genre {{#each this}}<span class="">{{genre_ids}}{{/each}}</span>
-               </p> --}}
-               <div class="film-info-text">
-                  <p class="film-info-item">Vote / Votes</p>
-                  <p class="film-info-item">Popularity</p>
-                  <p class="film-info-item">Original title</p>
-                  <p class="film-info-item">Genre</p>
-               </div>
-               <div class="film-info-text-render">
-                  <p class="film-info-text-rendered"><span class="vote-average">{{vote_average}}</span>/<span class="vote-count">{{vote_count}}</span></p>
-                  <p class="film-info-text-rendered">{{popularity}}</p>
-                  <p class="film-info-text-rendered">{{original_title}}</p>
-                  {{#each genres}}<p class="film-info-text-rendered">{{name}}{{/each}}</p>
-               </div>
-            </div>
-            <p class="film-about">about</p>
-            <p class="film-overview">{{overview}}</p>
-            <div class="button-block"> 
-               <button class="add-to-watched" data-action="add-to-watched">ADD TO WATCHED</button>
-               <button class="add-to-queue" data-action="add-to-queue">ADD TO QUEUE</button>
-            </div>
-           
+         <div class="film-info-text">
+            <p class="film-info-item">Vote / Votes</p>
+            <p class="film-info-item">Popularity</p>
+            <p class="film-info-item">Original title</p>
+            <p class="film-info-item">Genre</p>
          </div>
-         
+
+         <div class="film-info-text-render">
+            <p class="film-info-text-rendered"><span class="vote-average">{{vote_average}}</span>/<span
+                  class="vote-count">{{vote_count}}</span></p>
+            <p class="film-info-text-popularity">{{popularity}}</p>
+            <p class="film-info-text-original-title">{{original_title}}</p>
+            {{#each genres}}<p class="film-info-text-genres">{{name}}{{/each}}</p>
+         </div>
+
       </div>
-   {{!-- {{/each}} --}}
-   {{!--
-</ul> --}}
+      <div class="film-info-overview">
+         <p class="film-about">about</p>
+         <p class="film-overview">{{overview}}</p>
+      </div>
+
+      <div class="button-block">
+         <button class="add-to-watched" data-action="add-to-watched" data-id="{{id}}">ADD TO WATCHED</button>
+         <button class="add-to-queue" data-action="add-to-queue" data-id="{{id}}">ADD TO QUEUE</button>
+      </div>
+   </div>
+</div>

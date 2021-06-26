@@ -1,5 +1,5 @@
 import FilmsApiService from './apiService';
-import filmCardTpl from '../templates/one-movie-card.hbs';
+import filmCardTpl from '../templates/local-storage-library.hbs';
 import debounce from 'lodash.debounce';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 

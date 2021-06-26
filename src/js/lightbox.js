@@ -9,12 +9,10 @@ const refs = {
   lightboxContainer: document.querySelector('.js-lightbox'),
   lightboxOverlay: document.querySelector('[data-action="close-lightbox"]'),
   getMovieId: document.querySelector('.gallery'),
-  closeLightbox: document.querySelector('.lightbox__button'),
+  // closeLightbox: document.querySelector('.lightbox__button'),
 };
 
 const filmsApiService = new FilmsApiService();
-
-document.addEventListener('keydown', closeLightbox);
 
 refs.getMovieId.addEventListener('click', onFilmCardClick);
 
@@ -34,9 +32,10 @@ function onFilmCardClick(e) {
       addloaderEllipsClass();
       console.log(films);
       renderFilms(films);
-      // offScroll();
-      document.addEventListener('keydown', closeLightbox);
-      refs.closeLightbox.addEventListener('click', removeLightboxClass);
+      turnOffScroll();
+      const closeLightbox = document.querySelector('.lightbox__button');
+      document.addEventListener('keydown', closeLightboxEsc);
+      closeLightbox.addEventListener('click', removeLightboxClass);
       refs.lightboxOverlay.addEventListener('click', removeLightboxClass);
     })
     .catch(onFetchError)
@@ -49,8 +48,8 @@ function renderFilms(films) {
 
 function onFetchError(err) {
   //   error({
-  //     title: 'Error. Something went wrong. Try again later or reload the page',
-  //   });
+  //   title: 'Error. Something went wrong. Try again later or reload the page',
+  // });
   console.log(
     'Error. Something went wrong. Try again later or reload the page',
   );
@@ -74,24 +73,23 @@ function addLightboxClass() {
 
 function removeLightboxClass() {
   console.log('Close lightbox');
-  // onScroll();
+  turnOnScroll();
   refs.lightboxContainer.classList.remove('is-open');
-  refs.closeLightbox.removeEventListener('click', removeLightboxClass);
+  // closeLightbox.removeEventListener('click', removeLightboxClass);
   refs.lightboxOverlay.removeEventListener('click', removeLightboxClass);
 }
 
-function closeLightbox(e) {
+function closeLightboxEsc(e) {
   if (e.key === 'Escape') {
     removeLightboxClass();
-    document.removeEventListener('keydown', closeLightbox);
+    document.removeEventListener('keydown', closeLightboxEsc);
   }
 }
 
-function offScroll() {
+function turnOffScroll() {
   document.body.style.overflowY = 'hidden';
-  // filmsRenderCard.style.overflowY = 'auto'
 }
 
-function onScroll() {
+function turnOnScroll() {
   document.body.style.overflow = 'auto';
 }
