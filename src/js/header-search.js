@@ -3,38 +3,15 @@ import filmCardTpl from '../templates/one-movie-card.hbs';
 import debounce from 'lodash.debounce';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 
-const refs = {
-  searchFormInput: document.querySelector('#querySearch'),
+const refsHs = {
+  searchFormInput: document.querySelector('.header-search'),
   filmsRenderCard: document.querySelector('.gallery'),
   loaderEllips: document.querySelector('.loader-ellips'),
 };
 
 const filmApiService = new FilmsApiService();
 
-// const onEntry = entries => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting && filmApiService.query !== '') {
-//       filmApiService
-//         .fetchfilmsApi()
-//         .then(films => {
-//           addloaderEllipsClass();
-//           renderfilms(films);
-//         })
-//         .catch(onFetchError);
-//       removeloaderEllipsClass();
-//     }
-//   });
-// };
-
-// const option = {
-//   rootMargin: '250px',
-// };
-// const observer = new IntersectionObserver(onEntry, option);
-
-// observer.observe(refs.loaderEllips);
-
-refs.searchFormInput.addEventListener('input', debounce(onSearch, 500));
-// refs.filmsRenderCard.addEventListener('click', setfilmLightbox);
+refsHs.searchFormInput.addEventListener('input', debounce(onSearch, 500));
 
 function onSearch(e) {
   e.preventDefault();
@@ -46,7 +23,7 @@ function onSearch(e) {
   }
   filmApiService.resetPage();
   filmApiService
-    .fetchfilmsApi()
+    .fetchFilmsApi()
     .then(films => {
       console.log(films);
       clearfilmsContainer();
@@ -58,7 +35,7 @@ function onSearch(e) {
 }
 
 function renderfilms(films) {
-  refs.filmsRenderCard.insertAdjacentHTML('beforeend', filmCardTpl(films));
+  refsHs.filmsRenderCard.insertAdjacentHTML('beforeend', filmCardTpl(films));
 }
 
 function onFetchError(err) {
@@ -68,25 +45,16 @@ function onFetchError(err) {
 }
 
 function clearfilmsContainer() {
-  refs.filmsRenderCard.innerHTML = '';
+  refsHs.filmsRenderCard.innerHTML = '';
 }
 
 function addloaderEllipsClass() {
-  refs.loaderEllips.classList.add('is-hidden');
+  refsHs.loaderEllips.classList.add('is-hidden');
 }
 
 function removeloaderEllipsClass() {
-  refs.loaderEllips.classList.remove('is-hidden');
+  refsHs.loaderEllips.classList.remove('is-hidden');
 }
-
-// function setfilmLightbox(e) {
-//   const filmDataAttribute = e.target.dataset;
-//   if (e.target.dataset.src === undefined) {
-//     return;
-//   }
-//   const instance = basicLightbox.create(filmLightboxTpl(filmDataAttribute));
-//   instance.show();
-// }
 
 // const filmsApiService = new API();
 // // const API_KEY = 'ded12b962797b74c61a2522ada6bc31b';

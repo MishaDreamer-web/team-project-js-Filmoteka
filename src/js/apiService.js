@@ -7,12 +7,11 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
-  fetchfilmsApi() {
+  fetchFilmsApi() {
     const searchParams = new URLSearchParams({
       api_key: API_KEY,
       language: 'en-US',
       page: this.page,
-      per_page: '12',
       include_adult: false,
       query: this.searchQuery,
     });
