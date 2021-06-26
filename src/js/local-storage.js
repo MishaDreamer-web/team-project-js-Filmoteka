@@ -1,117 +1,85 @@
-const main = document.querySelector('.container');
-// console.log('main', main);
-const list = document.querySelector('.gallery');
-// console.log('list', list);
+import filmCardTpl from '../templates/one-movie-card.hbs';
+
 const watchedBtn = document.querySelector('.libr-watched');
-// console.log('watchedBtn', watchedBtn);
 const queueBtn = document.querySelector('.libr-queue');
-// console.log('queueBtn', queueBtn);
-
-// надо зацепиться за модалку. класс правильный?
 const modal = document.querySelector('.lightbox');
-console.log('modal', modal);
+const main = document.querySelector('.container');
 
-// массивы для Watched и Queue
 let arrayOfWatched = [];
-// console.log('array Of Watched:', arrayOfWatched);
 let arrayOfQueue = [];
-// console.log('array Of Queue:', arrayOfQueue);
 
-// есть/нет проверка
 if (localStorage.getItem('arrayOfWatched') !== null) {
   arrayOfWatched = localStorage.getItem('arrayOfWatched');
   arrayOfWatched = JSON.parse(arrayOfWatched);
 }
+
 if (localStorage.getItem('arrayOfQueue') !== null) {
   arrayOfQueue = localStorage.getItem('arrayOfQueue');
   arrayOfQueue = JSON.parse(arrayOfQueue);
 }
 
-// по модалке уточнить у Виталика?
-modal.addEventListener('click', function () {
-  console.log(event.target.nodeName);
-  console.log('модалка клик');
-
+modal.addEventListener('click', function (event) {
+  const el = document.querySelector('.film-img');
+  const targetId = el.getAttribute("id");
+  localStorage.setItem('targetId', JSON.stringify(targetId));
+  
   if (event.target.nodeName === 'BUTTON') {
-    if (event.target.className === 'btn libr-watched') {
-      arrayOfWatched.push(localStorage.getItem('targetModal'));
-
-      //просмотр
-      console.log(localStorage.getItem('targetModal'));
-      console.log('arrayOfWatched:', arrayOfWatched);
-
+    if (event.target.className === 'add-to-watched') {
+      arrayOfWatched.push(localStorage.getItem('targetId'));
       localStorage.setItem('arrayOfWatched', JSON.stringify(arrayOfWatched));
-    } else {
-      arrayOfQueue.push(localStorage.getItem('targetModal'));
-
-      //просмотр
-      console.log(localStorage.getItem('targetModal'));
-      console.log(arrayOfQueue);
-
+    } if (event.target.className === 'add-to-queue') {
+      arrayOfQueue.push(localStorage.getItem('targetId'));
       localStorage.setItem('arrayOfQueue', JSON.stringify(arrayOfQueue));
     }
   } else {
-    return console.log('noButton');
+    return console.log('мимо кассы');
   }
 });
 
-// кнопка просмотрено
-watchedBtn.addEventListener('click', function () {
-  // проверить класс
+watchedBtn.addEventListener('click', onWatchedBtn);
+
+function onWatchedBtn() {
   const allList = document.querySelectorAll('.gallery');
-  console.log('allList:', allList);
-  for (const list of allList) {
-    list.remove();
-  }
-  // привязать правильный класс
-  const allTitle = document.querySelectorAll('.card-view');
-  for (const title of allTitle) {
-    title.remove();
-  }
-  const watchedList = document.createElement('ul');
-  // проверить класс
-  watchedList.setAttribute('class', 'gallery');
-  main.appendChild(watchedList);
-  let watchedArray = localStorage.getItem('arrayOfWatched');
-  watchedArray = JSON.parse(watchedArray);
-  for (const object of watchedArray) {
-    const innerHTML = JSON.parse(object);
+    for (const list of allList) {
+      list.remove();
+    }
+    const watchedList = document.createElement('li');
+    watchedList.setAttribute('class', 'item');
+    main.appendChild(watchedList);
 
-    const li = document.createElement('li');
-    li.setAttribute('class', 'list__element');
-    li.insertAdjacentHTML('beforeend', innerHTML);
-    watchedList.appendChild(li);
-  }
-});
+    let watchedArray = localStorage.getItem('arrayOfWatched');
+    watchedArray = JSON.parse(watchedArray);
 
-queueBtn.addEventListener('click', function () {
-  // проверить класс
+    for (const object of watchedArray) {
+      const innerHTML = JSON.parse(object);
+      const li = document.createElement('li');
+      li.setAttribute('class', 'list__element');
+      li.insertAdjacentHTML('beforeend', innerHTML);
+      watchedList.appendChild(li);
+    }
+  watchedBtn.removeEventListener('click', onWatchedBtn);
+}
+
+queueBtn.addEventListener('click', onQueueBtn);
+
+function onQueueBtn() {
   const allList = document.querySelectorAll('.gallery');
-  console.log('allList:', allList);
-  for (const list of allList) {
-    list.remove();
-  }
-  // привязать правильный класс
-  const allTitle = document.querySelectorAll('.card-view');
-  for (const title of allTitle) {
-    title.remove();
-  }
-  const queueList = document.createElement('ul');
-  // проверить класс
-  queueList.setAttribute('class', 'gallery');
-  main.appendChild(queueList);
-  let queueArray = localStorage.getItem('arrayOfQueue');
-  queueArray = JSON.parse(queueArray);
-  for (const object of queueArray) {
-    const innerHTML = JSON.parse(object);
+    for (const list of allList) {
+      list.remove();
+    }
+    const watchedList = document.createElement('li');
+    watchedList.setAttribute('class', 'item');
+    main.appendChild(watchedList);
 
-    const li = document.createElement('li');
-    li.setAttribute('class', 'list__element');
-    li.insertAdjacentHTML('beforeend', innerHTML);
-    queueList.appendChild(li);
-  }
-});
+    let queueArray = localStorage.getItem('arrayOfQueue');
+    queueArray = JSON.parse(queueArray);
 
-// работающие, проверенные консоли закомментить
-// после approve - убрать все консоли?
-// отрисовка - кто?
+    for (const object of queueArray) {
+      const innerHTML = JSON.parse(object);
+      const li = document.createElement('li');
+      li.setAttribute('class', 'list__element');
+      li.insertAdjacentHTML('beforeend', innerHTML);
+      watchedList.appendChild(li);
+    }
+  queueBtn.removeEventListener('click', onQueueBtn);
+}
