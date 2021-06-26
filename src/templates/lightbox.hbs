@@ -1,8 +1,10 @@
 {{!-- <ul class="gallery"> --}}
    {{!-- {{#each this}} --}}
       <div class="film-card">
+         <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" id="{{id}}" />
+
          {{!-- <button type="button" class="lightbox__button" data-action="close-lightbox"></button> --}}
-         <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" />
+
 
          <div class="film-info-block">
             <h2 class="film-title">{{title}}</h2>
