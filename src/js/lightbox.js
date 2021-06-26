@@ -34,6 +34,7 @@ function onFilmCardClick(e) {
       addloaderEllipsClass();
       console.log(films);
       renderFilms(films);
+      offScroll();
       document.addEventListener('keydown', closeLightbox);
       refs.closeLightbox.addEventListener('click', removeLightboxClass);
       refs.lightboxOverlay.addEventListener('click', removeLightboxClass);
@@ -73,6 +74,7 @@ function addLightboxClass() {
 
 function removeLightboxClass() {
   console.log('Close lightbox');
+  onScroll();
   refs.lightboxContainer.classList.remove('is-open');
   refs.closeLightbox.removeEventListener('click', removeLightboxClass);
   refs.lightboxOverlay.removeEventListener('click', removeLightboxClass);
@@ -83,4 +85,12 @@ function closeLightbox(e) {
     removeLightboxClass();
     document.removeEventListener('keydown', closeLightbox);
   }
+}
+
+function offScroll() {
+  document.body.style.overflow = 'hidden';
+}
+
+function onScroll() {
+  document.body.style.overflow = 'auto';
 }
