@@ -7,7 +7,7 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
-  fetchImagesApi() {
+  fetchfilmsApi() {
     const searchParams = new URLSearchParams({
       api_key: API_KEY,
       language: 'en-US',
