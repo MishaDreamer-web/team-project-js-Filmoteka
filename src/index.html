@@ -30,13 +30,13 @@
         <nav class="main-nav">
           <ul class="nav-list list">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link link">
-                <span class="nav-link current">Home</span>
+              <a href="#" class="nav-link link js-home_link">
+                <span class="nav-link js-home-current current">Home</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link link"
-                ><span class="nav-link">My Library</span></a
+              <a href="#" class="nav-link link js-library_link"
+                ><span class="nav-link js-library-current">My Library</span></a
               >
             </li>
           </ul>
@@ -60,9 +60,14 @@
           </button>
         </label>
       </form>
-    </header>
+      <!-- добавил кнопки библиотеки -->
 
-    <include src="./partials/my_library.html"></include>
+      <div class="my_library-buttons">
+        <button class="buttons btn libr-watched">Watched</button>
+        <button class="buttons btn libr-queue">queue</button>
+      </div>
+    </header>
+    <!-- <include src="./partials/my_library.html"></include> -->
 
     <!-- Подключение разметки модального окна -->
     <include src="./partials/lightbox.html"></include>
