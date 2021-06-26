@@ -108,3 +108,6 @@ p {
   color: #fff;
   text-align: center;
 }
+.genres-name:not(:last-child):after {
+  content: ',';
+}

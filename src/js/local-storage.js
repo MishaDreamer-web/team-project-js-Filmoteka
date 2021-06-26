@@ -30,6 +30,7 @@ modal.addEventListener('click', function (event) {
     } if (event.target.className === 'add-to-queue') {
       arrayOfQueue.push(localStorage.getItem('targetId'));
       localStorage.setItem('arrayOfQueue', JSON.stringify(arrayOfQueue));
+
     }
   } else {
     return console.log('мимо кассы');
@@ -83,3 +84,5 @@ function onQueueBtn() {
     }
   queueBtn.removeEventListener('click', onQueueBtn);
 }
+});
+
