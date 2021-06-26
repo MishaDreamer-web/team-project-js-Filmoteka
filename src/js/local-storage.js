@@ -21,7 +21,7 @@ if (localStorage.getItem('arrayOfQueue') !== null) {
 modal.addEventListener('click', function (event) {
   const el = document.querySelector('.film-img');
   const targetId = el.getAttribute('id');
-  localStorage.setItem('targetId', JSON.stringify(targetId));
+  localStorage.setItem('targetId', targetId);
 
   if (event.target.nodeName === 'BUTTON') {
     if (event.target.className === 'add-to-watched') {
