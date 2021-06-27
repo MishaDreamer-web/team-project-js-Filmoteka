@@ -11,15 +11,19 @@
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-    box-shadow: 0 0 30px rgba(255, 107, 8, 1);
-  }
-  &:focus {
-    outline: none;
-    opacity: 1;
-    box-shadow: 0 0 30px rgba(255, 107, 8, 1);
+
+  @media screen and (min-width: 768px) {
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      box-shadow: 0 0 30px rgba(255, 107, 8, 1);
+    }
+
+    &:focus {
+      outline: none;
+      opacity: 1;
+      box-shadow: 0 0 30px rgba(255, 107, 8, 1);
+    }
   }
 }
 .up-button__svg {
