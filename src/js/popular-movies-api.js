@@ -1,6 +1,7 @@
 export default class PopularMoviesApi {
   constructor() {
     this.requestPage = 1;
+    this.totalPages;
     this.url;
     this.API_KEY = 'ded12b962797b74c61a2522ada6bc31b';
     this.BASE_URL = `https://api.themoviedb.org/3`;
@@ -13,8 +14,9 @@ export default class PopularMoviesApi {
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        return data.results;
+      .then(({ results, total_pages }) => {
+        this.totalPages = total_pages;
+        return results;
       });
   }
   //Список жанров.
