@@ -15,7 +15,7 @@ p {
 
   @media screen and (max-width: 767px) {
     display: flex;
-    align-items: center;
+    // align-items: center;
     flex-direction: column;
     &:not(:last-child) {
       margin-bottom: 20px;
@@ -48,8 +48,10 @@ p {
 }
 
 .movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 30px rgba(255, 107, 8, 1);
+  @media screen and (min-width: 768px) {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(255, 107, 8, 1);
+  }
 }
 
 .movie-card__img {
