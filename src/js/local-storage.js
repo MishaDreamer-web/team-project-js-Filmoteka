@@ -50,13 +50,15 @@ function onWatchedBtn() {
   watchedArray = JSON.parse(watchedArray);
   filmList.innerHTML = '';
   console.log('Clear innerHTML');
-  console.log(watchedArray);
+  // console.log(watchedArray);
+  watchedBtn.classList.add('btn-active');
+  queueBtn.classList.remove('btn-active');
   if (watchedArray !== null) {
     for (const film of watchedArray) {
       fetchFilm(film)
         .then(film => {
           renderFilms(film);
-          console.log(film);
+          // console.log(film);
         })
         .catch(error => console.log(error));
     }
@@ -67,18 +69,18 @@ function onWatchedBtn() {
 }
 
 function onQueueBtn() {
-  watchedBtn.classList.remove('btn-active')
   let queueArray = localStorage.getItem('arrayOfQueue');
   queueArray = JSON.parse(queueArray);
   filmList.innerHTML = '';
   console.log('Clear innerHTML');
-
+  queueBtn.classList.add('btn-active');
+  watchedBtn.classList.remove('btn-active');
   if (arrayOfQueue !== null) {
     for (const film of arrayOfQueue) {
       fetchFilm(film)
         .then(film => {
           renderFilms(film);
-          console.log(film);
+          // console.log(film);
         })
         .catch(error => console.log(error));
     }
@@ -90,7 +92,7 @@ function onQueueBtn() {
 function renderFilms(film) {
   const markup = filmCards(film);
   filmList.insertAdjacentHTML('beforeend', markup);
-  console.log(filmList);
+  // console.log(filmList);
 }
 
 function fetchFilm(filmId) {
@@ -105,7 +107,7 @@ function onLibraryBtn() {
   onWatchedBtn();
   watchedBtn.classList.add('btn-active');
 
-let paginationSearch = document.querySelector('.pagination-buttons-search');
+  let paginationSearch = document.querySelector('.pagination-buttons-search');
   let paginationTrending = document.querySelector(
     '.pagination-buttons-trending',
   );

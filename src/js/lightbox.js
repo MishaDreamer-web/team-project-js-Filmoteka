@@ -30,7 +30,7 @@ function onFilmCardClick(e) {
     .then(films => {
       clearImagesContainer();
       addloaderEllipsClass();
-      console.log(films);
+      // console.log(films);
       renderFilms(films);
       turnOffScroll();
       const closeLightbox = document.querySelector('.lightbox__button');
