@@ -43,16 +43,16 @@ modal.addEventListener('click', function (event) {
 watchedBtn.addEventListener('click', onWatchedBtn);
 
 function onWatchedBtn() {
-  fetchFilm(646207)
-  .then(renderFilms)
-    .catch(error => console.log(error));
-  
+  let watchedArray = localStorage.getItem('arrayOfWatched');
+  watchedArray = JSON.parse(watchedArray);
+
+  for (const object of watchedArray) {
+    fetchFilm(object)
+      .then(renderFilms)
+      .catch(error => console.log(error));
+  }
   watchedBtn.removeEventListener('click', onWatchedBtn);
 }
-
-// fetchFilm(646207)
-//   .then(renderFilms)
-//   .catch(error => console.log(error));
 
 function renderFilms(film) {
     const markup = filmCards(film);
@@ -98,7 +98,6 @@ function fetchFilm(filmId) {
 // function fetchFilm(e) {
 //   e.pev
 // }
-
 
 
 
