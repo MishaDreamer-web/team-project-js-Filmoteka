@@ -14,19 +14,21 @@ let listOfLibraryFetch = [];
 let queueArray = localStorage.getItem('arrayOfQueue');
 queueArray = JSON.parse(queueArray);
 console.log(queueArray);
-queueArray.map(item => {
-  console.log(item);
-  fetchQuery.query = item;
-  fetchQuery
-    .fetchFilmsApi()
-    .then(films => {
-      // clearImagesContainer();
-      listOfLibraryFetch.push(films);
-      renderFilms(listOfLibraryFetch);
-      addloaderEllipsClass();
-    })
-    .catch(onFetchError);
-});
+if (queueArray !== null) {
+  queueArray.map(item => {
+    console.log(item);
+    fetchQuery.query = item;
+    fetchQuery
+      .fetchFilmsApi()
+      .then(films => {
+        // clearImagesContainer();
+        listOfLibraryFetch.push(films);
+        renderFilms(listOfLibraryFetch);
+        addloaderEllipsClass();
+      })
+      .catch(onFetchError);
+  });
+}
 
 function onFetchError(err) {
   //   error({

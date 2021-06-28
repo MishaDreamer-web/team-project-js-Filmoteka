@@ -66,6 +66,7 @@ function onSearch(e) {
       .then(films => {
         if (films.length === 0) {
           refsHs.errorSearch.style.opacity = 1;
+          fetchPopMovies();
         }
         const paginationTrending = document.querySelector(
           '.pagination-buttons-trending',
