@@ -1,10 +1,14 @@
 import PopularMoviesApi from './popular-movies-api.js';
+import { toPageTopOnClick } from './scroll-up';
 import filmCardTpl from '../templates/one-movie-card.hbs';
+console.log(toPageTopOnClick);
 
 const galleryList = document.querySelector('.gallery');
 const popularMoviesApi = new PopularMoviesApi();
-const errorSearcg = document.querySelector('.error-search');
-
+const errorSearch = document.querySelector('.error-search');
+// const toPageTopOnClick = e => {
+//   window.scrollTo({ top: 0, behavior: 'smooth' });
+// };
 const markup = results => {
   galleryList.innerHTML = filmCardTpl(results);
   //   galleryList.insertAdjacentHTML('beforeend', filmCardTpl(results));
@@ -87,6 +91,7 @@ function PaginationButton(totalPages, maxPagesVisible = 10, currentPage = 1) {
     buttonElement.className = `page-btn ${cls}`;
     buttonElement.disabled = disabled;
     buttonElement.addEventListener('click', e => {
+      toPageTopOnClick(e);
       handleClick(e);
       this.update();
       paginationButtonContainer.value = currentPage;

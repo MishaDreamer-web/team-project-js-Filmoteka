@@ -1,7 +1,8 @@
 import FilmsApiService from './apiService';
 import ApiPopularMovies from './popular-movies-api.js';
+import { toPageTopOnClick } from './scroll-up';
 
-import filmCardTpl from '../templates/local-storage-library.hbs';
+import filmCardTpl from '../templates/one-movie-card.hbs';
 import debounce from 'lodash.debounce';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 
@@ -9,12 +10,13 @@ const refsHs = {
   searchFormInput: document.querySelector('.header-search'),
   filmsRenderCard: document.querySelector('.gallery'),
   loaderEllips: document.querySelector('.loader-ellips'),
-  errorSearcg: document.querySelector('.error-search'),
+  errorSearch: document.querySelector('.error-search'),
 };
 
 const filmApiService = new FilmsApiService();
-const popularApiMovies = new ApiPopularMovies();
-const drawnPages = 1;
+const popularMoviesApi = new ApiPopularMovies();
+let drawnPages;
+let paginationSearch = document.querySelector('.pagination-buttons-search');
 
 refsHs.searchFormInput.addEventListener('input', debounce(onSearch, 1000));
 
@@ -24,43 +26,76 @@ function onSearch(e) {
   clearfilmsContainer(); //Для очистки соджержимого если инпут пустой
   filmApiService.query = e.target.value;
   if (e.target.value === '') {
-    refsHs.errorSearcg.style.opacity = 0;
-    fetchPopMovies();
+    drawnPages = 5;
+    refsHs.errorSearch.style.opacity = 0;
+    popularMoviesApi
+      .createPopMovieGenres()
+      .then(films => {
+        console.log(films);
+        paginationSearch = document.querySelector('.pagination-buttons-search');
+        if (paginationSearch) {
+          paginationSearch.remove(); //Удаляет пагинацию найденных фильмов
+        }
+        renderfilms(films);
+        const total = popularMoviesApi.totalPages;
+        drawnPages = 5;
+        const paginationButtons = new PaginationButton(total, drawnPages);
+        // Отрисовка пагинации
+        paginationButtons.render();
+        // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
+        paginationButtons.onChange(e => {
+          popularMoviesApi.requestPage = e.target.value;
+          // Отрисовка популярных при переходе на другую страницу
+          fetchPopMovies();
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
     return;
   } else if (e.target.value === ' ') {
-    refsHs.errorSearcg.style.opacity = 1;
+    refsHs.errorSearch.style.opacity = 1;
+    drawnPages = 0;
     return;
+  } else {
+    drawnPages = 1;
+    refsHs.errorSearch.style.opacity = 0;
+    filmApiService.resetPage();
+    filmApiService
+      .createSearchMovieGenres()
+      .then(films => {
+        if (films.length === 0) {
+          refsHs.errorSearch.style.opacity = 1;
+        }
+        const paginationTrending = document.querySelector(
+          '.pagination-buttons-trending',
+        );
+        paginationSearch = document.querySelector('.pagination-buttons-search');
+        if (paginationTrending) {
+          paginationTrending.remove(); //Удаляет пагинацию трендовых фильмов
+        }
+        if (paginationSearch) {
+          paginationSearch.remove(); //Удаляет пагинацию найденных фильмов
+        }
+        console.log(films);
+        clearfilmsContainer();
+        addloaderEllipsClass();
+        renderfilms(films);
+
+        const total = filmApiService.totalPages;
+        const paginationButtons = new PaginationButton(total, drawnPages);
+        // Отрисовка пагинации
+        paginationButtons.render();
+        // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
+        paginationButtons.onChange(e => {
+          filmApiService.page = e.target.value;
+          // Отрисовка найденых при переходе на другую страницу
+          fetchSearchMovies();
+        });
+      })
+      .catch(onFetchError)
+      .finally(removeloaderEllipsClass());
   }
-  filmApiService.resetPage();
-  filmApiService
-    .createSearchMovieGenres()
-    .then(films => {
-      if (films.length === 0) {
-        refsHs.errorSearcg.style.opacity = 1;
-      }
-      const paginationTrending = document.querySelector(
-        '.pagination-buttons-trending',
-      );
-      paginationTrending.remove(); //Удаляет пагинацию трендовых фильмов
-
-      console.log(films);
-      clearfilmsContainer();
-      addloaderEllipsClass();
-      renderfilms(films);
-
-      const total = filmApiService.totalPages;
-      const paginationButtons = new PaginationButton(total, drawnPages);
-      // Отрисовка пагинации
-      paginationButtons.render();
-      // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
-      paginationButtons.onChange(e => {
-        filmApiService.page = e.target.value;
-        // Отрисовка найденых при переходе на другую страницу
-        fetchSearchMovies();
-      });
-    })
-    .catch(onFetchError)
-    .finally(removeloaderEllipsClass());
 }
 
 function renderfilms(films) {
@@ -90,7 +125,7 @@ const markup = results => {
 };
 
 const fetchPopMovies = () => {
-  popularApiMovies
+  popularMoviesApi
     .createPopMovieGenres()
     .then(results => {
       markup(results);
@@ -158,6 +193,7 @@ function PaginationButton(totalPages, maxPagesVisible = 10, currentPage = 1) {
     buttonElement.className = `page-btn ${cls}`;
     buttonElement.disabled = disabled;
     buttonElement.addEventListener('click', e => {
+      toPageTopOnClick(e);
       handleClick(e);
       this.update();
       paginationButtonContainer.value = currentPage;
