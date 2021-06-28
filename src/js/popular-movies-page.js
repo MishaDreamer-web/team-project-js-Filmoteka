@@ -73,7 +73,7 @@ function PaginationButton(totalPages, maxPagesVisible = 10, currentPage = 1) {
   };
   const frag = document.createDocumentFragment();
   const paginationButtonContainer = document.createElement('div');
-  paginationButtonContainer.className = 'pagination-buttons';
+  paginationButtonContainer.className = 'pagination-buttons-trending';
 
   const createAndSetupButton = (
     label = '',
