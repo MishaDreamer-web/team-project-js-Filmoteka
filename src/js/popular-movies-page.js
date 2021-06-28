@@ -3,6 +3,7 @@ import filmCardTpl from '../templates/one-movie-card.hbs';
 
 const galleryList = document.querySelector('.gallery');
 const popularMoviesApi = new PopularMoviesApi();
+const errorSearcg = document.querySelector('.error-search');
 
 const markup = results => {
   galleryList.innerHTML = filmCardTpl(results);

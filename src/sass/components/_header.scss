@@ -157,7 +157,7 @@
     border: none;
     border-bottom: 0.5px solid #ffffff;
     color: #ffffff;
-    margin-bottom: 97px;
+    margin-bottom: 22px;
 
     &::placeholder {
       color: #ffffff;
@@ -243,6 +243,18 @@
         ),
         url('../images/header/desktop/Film-desk@x2.jpg');
     }
+  }
+  .error-search {
+    display: block;
+    color: #ff001b;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.14;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
   }
 
   background-repeat: no-repeat;
@@ -348,5 +360,8 @@
     text-align: center;
     padding-bottom: 65px;
     margin-top: 45px;
+  }
+  .error-search {
+    display: none;
   }
 }
