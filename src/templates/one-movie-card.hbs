@@ -1,12 +1,20 @@
 {{#each this}}
   <li class='movie-card list'>
-    <img
-      class='movie-card__img'
-      src='https://image.tmdb.org/t/p/original{{poster_path}}'
-      alt='{{title}}{{name}}'
-      data-id='{{id}}'
-      {{! Добавлен дата атрибут  }}
-    />
+    {{#if poster_path}}
+      <img
+        class='movie-card__img'
+        src='https://image.tmdb.org/t/p/original{{poster_path}}'
+        alt='{{title}}{{name}}'
+        data-id='{{id}}'
+      />
+    {{else}}
+      <img
+        class='movie-card__img'
+        src='https://www.prokerala.com/movies/assets/img/no-poster-available.jpg'
+        alt='no-poster-available'
+        data-id='{{id}}'
+      />
+    {{/if}}
     <h2 class='movie-card__title'>{{title}}{{name}}</h2>
     <div class='movie-card__info'>
       <ul class='movie-card__genres list'>
