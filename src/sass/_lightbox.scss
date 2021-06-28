@@ -38,10 +38,10 @@
 .lightbox__content {
   transform: scale(0.95);
   transition: transform var(--animation-duration) var(--timing-function);
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 280px;
-  height: 958px;
+  max-height: 1280px;
   margin-left: auto;
   margin-right: auto;
 
@@ -49,17 +49,13 @@
   //   width: 280px;
   // }
 
-  // @media screen and (min-width: 768px) {
-  //   width: 618px;
-  //   padding-left: 75px;
-  //   padding-right: 75px;
-  // }
+  @media screen and (min-width: 767px) {
+    width: 618px;
+  }
 
-  // @media screen and (min-width: 1024px) {
-  //   width: 882px;
-  //   padding-left: 71px;
-  //   padding-right: 71px;
-  // }
+  @media screen and (min-width: 1024px) {
+    width: 882px;
+  }
 }
 
 .lightbox.is-open .lightbox__content {
@@ -68,19 +64,19 @@
 
 .lightbox__button {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 4px;
+  right: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   margin: 0;
   border: none;
   border-radius: 50%;
   background-color: transparent;
-  color: rgb(255, 255, 255);
+  color: #000;
   // fill: rgb(43, 255, 0);
   cursor: pointer;
   transition: background-color var(--animation-duration) var(--timing-function);
