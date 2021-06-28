@@ -18,3 +18,4 @@ const toPageTopOnClick = e => {
 
 upButton.addEventListener('click', toPageTopOnClick);
 window.addEventListener('scroll', throttle(hideElOnScroll(upButton), 250));
+export { toPageTopOnClick };
