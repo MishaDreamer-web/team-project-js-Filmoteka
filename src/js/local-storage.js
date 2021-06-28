@@ -45,9 +45,10 @@ watchedBtn.addEventListener('click', onWatchedBtn);
 function onWatchedBtn() {
   let watchedArray = localStorage.getItem('arrayOfWatched');
   watchedArray = JSON.parse(watchedArray);
+  // console.log(watchedArray);
 
-  for (const object of watchedArray) {
-    fetchFilm(object)
+  for (const film of watchedArray) {
+    fetchFilm(film)
       .then(renderFilms)
       .catch(error => console.log(error));
   }
@@ -72,15 +73,13 @@ function fetchFilm(filmId) {
 
 // function onWatchedBtn() {
 
-//   renderFilms();
-
   // const allList = document.querySelectorAll('.gallery');
   // for (const list of allList) {
   //   list.remove();
   // }
   // const watchedList = document.createElement('li');
   // watchedList.setAttribute('class', 'item');
-  // main.appendChild(watchedList);
+  // filmList.appendChild(watchedList);
 
   // let watchedArray = localStorage.getItem('arrayOfWatched');
   // watchedArray = JSON.parse(watchedArray);
@@ -95,15 +94,11 @@ function fetchFilm(filmId) {
 //   watchedBtn.removeEventListener('click', onWatchedBtn);
 // }
 
-// function fetchFilm(e) {
-//   e.pev
-// }
 
+queueBtn.addEventListener('click', onQueueBtn);
 
-
-// queueBtn.addEventListener('click', onQueueBtn);
-
-// function onQueueBtn() {
+function onQueueBtn() {
+  console.log('on Queue Button click')
 //   // const allList = document.querySelectorAll('.gallery');
 //   // for (const list of allList) {
 //   //   list.remove();
@@ -123,5 +118,5 @@ function fetchFilm(filmId) {
 //     // watchedList.appendChild(li);
 //     renderFilms(object)
 //   }
-//   queueBtn.removeEventListener('click', onQueueBtn);
-// }
+  queueBtn.removeEventListener('click', onQueueBtn);
+}
