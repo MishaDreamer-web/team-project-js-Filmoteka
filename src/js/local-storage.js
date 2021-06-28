@@ -1,4 +1,4 @@
-import filmCards from '../templates/local-storage-library.hbs';
+import filmCards from '../templates/watched-and-queue-lib.hbs';
 
 const API_KEY = '8e21a9da93e3e26e31007a5f0585823a';
 const BASE_URL = 'https://api.themoviedb.org';
@@ -7,6 +7,7 @@ const watchedBtn = document.querySelector('.libr-watched');
 const queueBtn = document.querySelector('.libr-queue');
 const modal = document.querySelector('.lightbox');
 const filmList = document.querySelector('.gallery');
+// const libraryBtn = document.querySelector('.js-library-current');
 
 let arrayOfWatched = [];
 let arrayOfQueue = [];
@@ -42,6 +43,7 @@ modal.addEventListener('click', function (event) {
 
 watchedBtn.addEventListener('click', onWatchedBtn);
 queueBtn.addEventListener('click', onQueueBtn);
+// libraryBtn.addEventListener('click', onLibraryBtn);
 
 function onWatchedBtn() {
   let watchedArray = localStorage.getItem('arrayOfWatched');
@@ -94,3 +96,7 @@ function fetchFilm(filmId) {
     return response.json();
   });
 }
+
+// function onLibraryBtn() {
+
+// }
