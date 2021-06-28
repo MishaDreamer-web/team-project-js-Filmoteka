@@ -1,9 +1,11 @@
-import filmCardTpl from '../templates/one-movie-card.hbs';
+import movieCardForLibrary from '../templates/local-storage-library.hbs';
+const API_KEY = '8e21a9da93e3e26e31007a5f0585823a';
+const BASE_URL = 'https://api.themoviedb.org';
 
 const watchedBtn = document.querySelector('.libr-watched');
 const queueBtn = document.querySelector('.libr-queue');
 const modal = document.querySelector('.lightbox');
-const main = document.querySelector('.container');
+const renderList = document.querySelectorAll('.gallery');
 
 let arrayOfWatched = [];
 let arrayOfQueue = [];
@@ -19,9 +21,10 @@ if (localStorage.getItem('arrayOfQueue') !== null) {
 }
 
 modal.addEventListener('click', function (event) {
-  const el = document.querySelector('.film-img');
-  const targetId = el.getAttribute('id');
+  const el = document.querySelector('.movie-card__img');
+  const targetId = el.getAttribute('data-id');
   localStorage.setItem('targetId', targetId);
+  console.log(targetId);
 
   if (event.target.nodeName === 'BUTTON') {
     if (event.target.className === 'add-to-watched') {
@@ -40,27 +43,31 @@ modal.addEventListener('click', function (event) {
 watchedBtn.addEventListener('click', onWatchedBtn);
 
 function onWatchedBtn() {
-  const allList = document.querySelectorAll('.gallery');
-  for (const list of allList) {
-    list.remove();
-  }
-  const watchedList = document.createElement('li');
-  watchedList.setAttribute('class', 'item');
-  main.appendChild(watchedList);
 
-  let watchedArray = localStorage.getItem('arrayOfWatched');
-  watchedArray = JSON.parse(watchedArray);
+  console.log('click on watched button')
 
-  for (const object of watchedArray) {
-    const innerHTML = JSON.parse(object);
-    const li = document.createElement('li');
-    li.setAttribute('class', 'list__element');
-    li.insertAdjacentHTML('beforeend', innerHTML);
-    watchedList.appendChild(li);
-  }
+  fetchFilms()
+    .then(renderWatchedFilmes)
+    .catch(error => console.log(error));
+  
   watchedBtn.removeEventListener('click', onWatchedBtn);
 }
 
+function fetchFilms(filmID) {
+// fetch('https://api.themoviedb.org/3/movie/646207?api_key=8e21a9da93e3e26e31007a5f0585823a')
+  fetch(`${BASE_URL}/3/movie/${filmID}?api_key=${API_KEY}&language=en-US`)
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+}
+
+function renderWatchedFilmes(film) {
+  const markup = movieCardForLibrary(film);
+  console.log(markup);
+  renderList.innerHTML = markup;  
+}
+  
 queueBtn.addEventListener('click', onQueueBtn);
 
 function onQueueBtn() {
