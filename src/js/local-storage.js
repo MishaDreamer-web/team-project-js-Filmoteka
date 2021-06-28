@@ -7,7 +7,7 @@ const watchedBtn = document.querySelector('.libr-watched');
 const queueBtn = document.querySelector('.libr-queue');
 const modal = document.querySelector('.lightbox');
 const filmList = document.querySelector('.gallery');
-// const libraryBtn = document.querySelector('.js-library-current');
+const libraryBtn = document.querySelector('.js-library-current');
 
 let arrayOfWatched = [];
 let arrayOfQueue = [];
@@ -43,41 +43,45 @@ modal.addEventListener('click', function (event) {
 
 watchedBtn.addEventListener('click', onWatchedBtn);
 queueBtn.addEventListener('click', onQueueBtn);
-// libraryBtn.addEventListener('click', onLibraryBtn);
+libraryBtn.addEventListener('click', onLibraryBtn);
 
 function onWatchedBtn() {
   let watchedArray = localStorage.getItem('arrayOfWatched');
   watchedArray = JSON.parse(watchedArray);
   filmList.innerHTML = '';
   console.log('Clear innerHTML');
-
-  for (const film of watchedArray) {
-    fetchFilm(film)
-      .then(film => {
-        renderFilms(film);
-        console.log(film);
-      })
-      .catch(error => console.log(error));
+  console.log(watchedArray);
+  if (watchedArray !== null) {
+    for (const film of watchedArray) {
+      fetchFilm(film)
+        .then(film => {
+          renderFilms(film);
+          console.log(film);
+        })
+        .catch(error => console.log(error));
+    }
   }
+
   watchedBtn.addEventListener('click', onQueueBtn);
   watchedBtn.removeEventListener('click', onWatchedBtn);
 }
 
 function onQueueBtn() {
+  watchedBtn.classList.remove('btn-active')
   let queueArray = localStorage.getItem('arrayOfQueue');
   queueArray = JSON.parse(queueArray);
-  console.log(filmList);
   filmList.innerHTML = '';
   console.log('Clear innerHTML');
-  console.log(filmList);
 
-  for (const film of arrayOfQueue) {
-    fetchFilm(film)
-      .then(film => {
-        renderFilms(film);
-        console.log(film);
-      })
-      .catch(error => console.log(error));
+  if (arrayOfQueue !== null) {
+    for (const film of arrayOfQueue) {
+      fetchFilm(film)
+        .then(film => {
+          renderFilms(film);
+          console.log(film);
+        })
+        .catch(error => console.log(error));
+    }
   }
   watchedBtn.addEventListener('click', onWatchedBtn);
   watchedBtn.removeEventListener('click', onQueueBtn);
@@ -97,6 +101,18 @@ function fetchFilm(filmId) {
   });
 }
 
-// function onLibraryBtn() {
+function onLibraryBtn() {
+  onWatchedBtn();
+  watchedBtn.classList.add('btn-active');
 
-// }
+let paginationSearch = document.querySelector('.pagination-buttons-search');
+  let paginationTrending = document.querySelector(
+    '.pagination-buttons-trending',
+  );
+  if (paginationSearch) {
+    paginationSearch.remove(); //Удаляет пагинацию найденных фильмов
+  }
+  if (paginationTrending) {
+    paginationTrending.remove(); //Удаляет пагинацию найденных фильмов
+  }
+}
