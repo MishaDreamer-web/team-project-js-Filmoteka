@@ -1,5 +1,7 @@
-import FilmsApiService from './apiService.js';
-import filmCardTpl from '../templates/one-movie-card.hbs';
+import FilmsApiService from './apiService';
+import ApiPopularMovies from './popular-movies-api.js';
+
+import filmCardTpl from '../templates/local-storage-library.hbs';
 import debounce from 'lodash.debounce';
 // import { error } from '@pnotify/core/dist/PNotify.js';
 
@@ -7,10 +9,11 @@ const refsHs = {
   searchFormInput: document.querySelector('.header-search'),
   filmsRenderCard: document.querySelector('.gallery'),
   loaderEllips: document.querySelector('.loader-ellips'),
+  errorSearcg: document.querySelector('.error-search'),
 };
 
 const filmApiService = new FilmsApiService();
-
+const popularApiMovies = new ApiPopularMovies();
 const drawnPages = 1;
 
 refsHs.searchFormInput.addEventListener('input', debounce(onSearch, 1000));
@@ -21,12 +24,20 @@ function onSearch(e) {
   clearfilmsContainer(); //Для очистки соджержимого если инпут пустой
   filmApiService.query = e.target.value;
   if (e.target.value === '') {
+    refsHs.errorSearcg.style.opacity = 0;
+    fetchPopMovies();
+    return;
+  } else if (e.target.value === ' ') {
+    refsHs.errorSearcg.style.opacity = 1;
     return;
   }
   filmApiService.resetPage();
   filmApiService
     .createSearchMovieGenres()
     .then(films => {
+      if (films.length === 0) {
+        refsHs.errorSearcg.style.opacity = 1;
+      }
       const paginationTrending = document.querySelector(
         '.pagination-buttons-trending',
       );
@@ -73,6 +84,21 @@ function addloaderEllipsClass() {
 function removeloaderEllipsClass() {
   refsHs.loaderEllips.classList.remove('is-hidden');
 }
+const markup = results => {
+  refsHs.filmsRenderCard.innerHTML = filmCardTpl(results);
+  //   galleryList.insertAdjacentHTML('beforeend', filmCardTpl(results));
+};
+
+const fetchPopMovies = () => {
+  popularApiMovies
+    .createPopMovieGenres()
+    .then(results => {
+      markup(results);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 
 // const filmsApiService = new API();
 // // const API_KEY = 'ded12b962797b74c61a2522ada6bc31b';
