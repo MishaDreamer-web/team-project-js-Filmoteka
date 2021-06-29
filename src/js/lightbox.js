@@ -44,6 +44,16 @@ function onFilmCardClick(e) {
 
 function renderFilms(films) {
   refs.filmsRenderCard.insertAdjacentHTML('beforeend', filmsCardTpl(films));
+  const wBtnText = localStorage.getItem('wBtn');
+  const qBtnText = localStorage.getItem('qBtn');
+  if (wBtnText && !qBtnText) {
+    document.querySelector('.add-to-watched').textContent = wBtnText;
+  } else if (qBtnText && !wBtnText) {
+    document.querySelector('.add-to-queue').textContent = qBtnText;
+  } else if (wBtnText && qBtnText) {
+    document.querySelector('.add-to-watched').textContent = wBtnText;
+    document.querySelector('.add-to-queue').textContent = qBtnText;
+  }
 }
 
 function onFetchError(err) {
