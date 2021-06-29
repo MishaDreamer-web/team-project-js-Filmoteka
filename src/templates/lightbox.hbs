@@ -1,7 +1,20 @@
 <div class="film-card">
    <button type="button" class="lightbox__button" data-action="close-lightbox"></button>
-   <img class="film-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}" data-id="{{id}}" />
-
+   {{#if poster_path}}
+      <img
+        class="film-img"
+        src='https://image.tmdb.org/t/p/original{{poster_path}}'
+        alt='{{title}}{{name}}'
+        data-id='{{id}}'
+      />
+    {{else}}
+      <img
+        class="film-img"
+        src='https://www.prokerala.com/movies/assets/img/no-poster-available.jpg'
+        alt='no-poster-available'
+        data-id='{{id}}'
+      />
+    {{/if}}
    <div class="film-info-block">
       <h2 class="film-title">{{title}}</h2>
       <div class="film-info">
