@@ -203,7 +203,11 @@ p {
 .add-to-watched {
   width: 112px;
   height: 44px;
-  background: #ff6b01;
+
+  background: #a1a1a1;
+
+  cursor: pointer;
+
   border-radius: 5px;
   margin-right: 15px;
   font-size: 12px;
@@ -231,11 +235,16 @@ p {
   font-size: 12px;
   line-height: 16px;
 
+  background: #a1a1a1;
+  color: #ffffff;
+
+  cursor: pointer;
+
   text-align: center;
   text-transform: uppercase;
   width: 112px;
   height: 44px;
-  border: 1px solid #000000;
+  // border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 5px;
 
@@ -252,4 +261,11 @@ p {
     width: 136px;
     height: 44px;
   }
+}
+
+.add-to-queue:hover,
+.add-to-queue:focus,
+.add-to-watched:hover,
+.add-to-watched:focus {
+  background-color: #ff6b01;
 }
