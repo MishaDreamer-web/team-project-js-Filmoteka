@@ -16,7 +16,7 @@ queueArray = JSON.parse(queueArray);
 // console.log(queueArray);
 if (queueArray !== null) {
   queueArray.map(item => {
-    console.log(item);
+    // console.log(item);
     fetchQuery.query = item;
     fetchQuery
       .fetchFilmsApi()
