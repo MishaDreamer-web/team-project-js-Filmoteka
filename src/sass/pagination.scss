@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .page-btn {
@@ -26,6 +26,25 @@
 
   &:not(:last-child) {
     margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .pagination-buttons-trending .page-btn {
+    height: 35px;
+    width: 35px;
+
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+  .pagination-buttons-trending .start-page,
+  .pagination-buttons-trending .end-page {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
   }
 }
 

@@ -1,17 +1,11 @@
 import PopularMoviesApi from './popular-movies-api.js';
 import { toPageTopOnClick } from './scroll-up';
 import filmCardTpl from '../templates/one-movie-card.hbs';
-console.log(toPageTopOnClick);
 
 const galleryList = document.querySelector('.gallery');
 const popularMoviesApi = new PopularMoviesApi();
-const errorSearch = document.querySelector('.error-search');
-// const toPageTopOnClick = e => {
-//   window.scrollTo({ top: 0, behavior: 'smooth' });
-// };
 const markup = results => {
   galleryList.innerHTML = filmCardTpl(results);
-  //   galleryList.insertAdjacentHTML('beforeend', filmCardTpl(results));
 };
 const drawnPages = 5;
 

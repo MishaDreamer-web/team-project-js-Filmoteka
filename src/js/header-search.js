@@ -17,12 +17,12 @@ const filmApiService = new FilmsApiService();
 const popularMoviesApi = new ApiPopularMovies();
 let drawnPages;
 let paginationSearch = document.querySelector('.pagination-buttons-search');
+let paginationTrending = document.querySelector('.pagination-buttons-trending');
 
 refsHs.searchFormInput.addEventListener('input', debounce(onSearch, 1000));
 
 function onSearch(e) {
   e.preventDefault();
-  console.log(e.target.value);
   clearfilmsContainer(); //Для очистки соджержимого если инпут пустой
   filmApiService.query = e.target.value;
   if (e.target.value === '') {
@@ -31,17 +31,13 @@ function onSearch(e) {
     popularMoviesApi
       .createPopMovieGenres()
       .then(films => {
-        console.log(films);
-        paginationSearch = document.querySelector('.pagination-buttons-search');
-        if (paginationSearch) {
-          paginationSearch.remove(); //Удаляет пагинацию найденных фильмов
-        }
+        paginationSearchRemove();
         renderfilms(films);
         const total = popularMoviesApi.totalPages;
         drawnPages = 5;
         const paginationButtons = new PaginationButton(total, drawnPages);
         // Отрисовка пагинации
-        paginationButtons.render();
+        paginationButtons.renderTrend();
         // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
         paginationButtons.onChange(e => {
           popularMoviesApi.requestPage = e.target.value;
@@ -55,7 +51,8 @@ function onSearch(e) {
     return;
   } else if (e.target.value === ' ') {
     refsHs.errorSearch.style.opacity = 1;
-    drawnPages = 0;
+    paginationTrendingRemove();
+    paginationSearchRemove();
     return;
   } else {
     drawnPages = 1;
@@ -65,20 +62,11 @@ function onSearch(e) {
       .createSearchMovieGenres()
       .then(films => {
         if (films.length === 0) {
+          drawnPages = 0;
           refsHs.errorSearch.style.opacity = 1;
-          fetchPopMovies();
         }
-        const paginationTrending = document.querySelector(
-          '.pagination-buttons-trending',
-        );
-        paginationSearch = document.querySelector('.pagination-buttons-search');
-        if (paginationTrending) {
-          paginationTrending.remove(); //Удаляет пагинацию трендовых фильмов
-        }
-        if (paginationSearch) {
-          paginationSearch.remove(); //Удаляет пагинацию найденных фильмов
-        }
-        console.log(films);
+        paginationTrendingRemove();
+        paginationSearchRemove();
         clearfilmsContainer();
         addloaderEllipsClass();
         renderfilms(films);
@@ -120,9 +108,23 @@ function addloaderEllipsClass() {
 function removeloaderEllipsClass() {
   refsHs.loaderEllips.classList.remove('is-hidden');
 }
+//Удаляет пагинацию трендовых фильмов
+function paginationTrendingRemove() {
+  paginationTrending = document.querySelector('.pagination-buttons-trending');
+  if (paginationTrending) {
+    paginationTrending.remove();
+  }
+}
+//Удаляет пагинацию найденных фильмов
+function paginationSearchRemove() {
+  paginationSearch = document.querySelector('.pagination-buttons-search');
+  if (paginationSearch) {
+    paginationSearch.remove();
+  }
+}
+
 const markup = results => {
   refsHs.filmsRenderCard.innerHTML = filmCardTpl(results);
-  //   galleryList.insertAdjacentHTML('beforeend', filmCardTpl(results));
 };
 
 const fetchPopMovies = () => {
@@ -135,10 +137,6 @@ const fetchPopMovies = () => {
       console.log(error);
     });
 };
-
-// const filmsApiService = new API();
-// // const API_KEY = 'ded12b962797b74c61a2522ada6bc31b';
-// // const BASE_URL = 'https://api.themoviedb.org/';
 
 const fetchSearchMovies = () => {
   filmApiService
@@ -278,6 +276,10 @@ function PaginationButton(totalPages, maxPagesVisible = 10, currentPage = 1) {
   paginationButtonContainer.appendChild(frag);
 
   this.render = (container = document.querySelector('.container')) => {
+    container.appendChild(paginationButtonContainer);
+  };
+  this.renderTrend = (container = document.querySelector('.container')) => {
+    paginationButtonContainer.className = 'pagination-buttons-trending';
     container.appendChild(paginationButtonContainer);
   };
 
