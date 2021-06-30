@@ -90,8 +90,8 @@ function onQueueBtn() {
   filmList.innerHTML = '';
   let queueArray = localStorage.getItem('arrayOfQueue');
   queueArray = JSON.parse(queueArray);
-  console.log(queueArray);
-  console.log('Clear innerHTML');
+  // console.log(queueArray);
+  // console.log('Clear innerHTML');
   queueBtn.classList.add('btn-active');
   watchedBtn.classList.remove('btn-active');
   if (queueArray) {
