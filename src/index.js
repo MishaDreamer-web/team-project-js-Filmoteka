@@ -6,3 +6,4 @@ import './js/my-library';
 import './js/popular-movies-page';
 import './js/header-search';
 import './js/libraryApiService';
+import './js/team-modal';
