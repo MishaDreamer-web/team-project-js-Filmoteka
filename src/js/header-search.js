@@ -25,39 +25,13 @@ function onSearch(e) {
   e.preventDefault();
   clearfilmsContainer(); //Для очистки соджержимого если инпут пустой
   filmApiService.query = e.target.value;
-  if (e.target.value === '') {
-    drawnPages = 5;
-    refsHs.errorSearch.style.opacity = 0;
-    popularMoviesApi.requestPage = 1;
-    popularMoviesApi
-      .createPopMovieGenres()
-      .then(films => {
-        paginationTrendingRemove();
-        paginationSearchRemove();
-        renderfilms(films);
-        const total = popularMoviesApi.totalPages;
-        const paginationButtons = new PaginationButton(total, drawnPages, page);
-        // Отрисовка пагинации
-        paginationButtons.renderTrend();
-        // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
-        paginationButtons.onChange(e => {
-          popularMoviesApi.requestPage = e.target.value;
-          // Отрисовка популярных при переходе на другую страницу
-          fetchPopMovies();
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  } else if (e.target.value === ' ') {
-    e.target.value = '';
+  if (e.target.value.trim() === '') {
     drawnPages = 5;
     refsHs.errorSearch.style.opacity = 1;
     popularMoviesApi.requestPage = 1;
     popularMoviesApi
       .createPopMovieGenres()
       .then(films => {
-        //  refsHs.searchFormInput.textContent = '';
         paginationTrendingRemove();
         paginationSearchRemove();
         renderfilms(films);
@@ -76,7 +50,36 @@ function onSearch(e) {
       .catch(error => {
         console.log(error);
       });
-  } else {
+  }
+  // else if (e.target.value === ' ') {
+  //   e.target.value = '';
+  //   drawnPages = 5;
+  //   refsHs.errorSearch.style.opacity = 1;
+  //   popularMoviesApi.requestPage = 1;
+  //   popularMoviesApi
+  //     .createPopMovieGenres()
+  //     .then(films => {
+  //       //  refsHs.searchFormInput.textContent = '';
+  //       paginationTrendingRemove();
+  //       paginationSearchRemove();
+  //       renderfilms(films);
+  //       const total = popularMoviesApi.totalPages;
+  //       const paginationButtons = new PaginationButton(total, drawnPages, page);
+  //       // Отрисовка пагинации
+  //       paginationButtons.renderTrend();
+  //       // Посылает запрос на бекенд каждый раз при нажатии на кнопку страницы(нужно исправить, наверное)
+  //       paginationButtons.onChange(e => {
+  //         popularMoviesApi.requestPage = e.target.value;
+  //         refsHs.errorSearch.style.opacity = 0;
+  //         // Отрисовка популярных при переходе на другую страницу
+  //         fetchPopMovies();
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
+  else {
     drawnPages = 1;
     refsHs.errorSearch.style.opacity = 0;
     filmApiService.resetPage();

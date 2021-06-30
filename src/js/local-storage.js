@@ -23,35 +23,41 @@ modal.addEventListener('click', function (event) {
     if (event.target.className === 'add-to-watched') {
       if (event.target.textContent === 'ADD TO WATCHED') {
         event.target.textContent = 'REMOVE FROM WATCHED';
-        localStorage.setItem('wBtn', 'REMOVE FROM WATCHED');
         if (!arrayOfWatched.includes(targetId)) {
           arrayOfWatched.push(targetId);
         }
         localStorage.setItem('arrayOfWatched', JSON.stringify(arrayOfWatched));
       } else {
         event.target.textContent = 'ADD TO WATCHED';
-        localStorage.setItem('wBtn', 'ADD TO WATCHED');
         const filteredArr = JSON.parse(
           localStorage.getItem('arrayOfWatched'),
         ).filter(el => el !== event.target.getAttribute('data-id'));
         localStorage.setItem('arrayOfWatched', JSON.stringify(filteredArr));
       }
+      if (
+        document.querySelector('.js-library-current').classList.length === 3
+      ) {
+        onWatchedBtn();
+      }
     }
     if (event.target.className === 'add-to-queue') {
       if (event.target.textContent === 'ADD TO QUEUE') {
         event.target.textContent = 'REMOVE FROM QUEUE';
-        localStorage.setItem('qBtn', 'REMOVE FROM QUEUE');
         if (!arrayOfQueue.includes(targetId)) {
           arrayOfQueue.push(targetId);
         }
         localStorage.setItem('arrayOfQueue', JSON.stringify(arrayOfQueue));
       } else {
         event.target.textContent = 'ADD TO QUEUE';
-        localStorage.setItem('qBtn', 'ADD TO QUEUE');
         const filteredArr = JSON.parse(
           localStorage.getItem('arrayOfQueue'),
         ).filter(el => el !== event.target.getAttribute('data-id'));
         localStorage.setItem('arrayOfQueue', JSON.stringify(filteredArr));
+      }
+      if (
+        document.querySelector('.js-library-current').classList.length === 3
+      ) {
+        onQueueBtn();
       }
     }
   }
