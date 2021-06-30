@@ -109,6 +109,9 @@ p {
 
 .movie-card__genres {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 140px;
+
   & li {
     margin-right: 5px;
   }
@@ -116,6 +119,7 @@ p {
 
 .movie-card__rating {
   width: 36px;
+  height: 16px;
   margin-left: 16px;
   border-radius: 5px;
   background-color: #ff6b08;
