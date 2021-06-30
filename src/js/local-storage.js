@@ -69,7 +69,7 @@ function onWatchedBtn() {
   filmList.innerHTML = '';
   let watchedArray = localStorage.getItem('arrayOfWatched');
   watchedArray = JSON.parse(watchedArray);
-  console.log('Clear innerHTML');
+  // console.log('Clear innerHTML');
   // console.log(watchedArray);
   watchedBtn.classList.add('btn-active');
   queueBtn.classList.remove('btn-active');

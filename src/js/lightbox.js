@@ -14,7 +14,7 @@ const filmsApiService = new FilmsApiService();
 refs.getMovieId.addEventListener('click', onFilmCardClick);
 function onFilmCardClick(e) {
   e.preventDefault();
-  console.log(e.target.dataset.id);
+  // console.log(e.target.dataset.id);
   filmsApiService.query = e.target.dataset.id;
   if (e.target.dataset.id === undefined) {
     return;
@@ -73,7 +73,7 @@ function addLightboxClass() {
 }
 
 function removeLightboxClass() {
-  console.log('Close lightbox');
+  // console.log('Close lightbox');
   turnOnScroll();
   clearImagesContainer();
   refs.lightboxContainer.classList.remove('is-open');

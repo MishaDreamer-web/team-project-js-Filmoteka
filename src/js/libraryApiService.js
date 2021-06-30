@@ -13,7 +13,7 @@ let listOfLibraryFetch = [];
 
 let queueArray = localStorage.getItem('arrayOfQueue');
 queueArray = JSON.parse(queueArray);
-console.log(queueArray);
+// console.log(queueArray);
 if (queueArray !== null) {
   queueArray.map(item => {
     console.log(item);

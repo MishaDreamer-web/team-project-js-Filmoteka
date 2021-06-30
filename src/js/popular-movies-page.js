@@ -13,7 +13,7 @@ const fetchPopMoviesFirst = () => {
   popularMoviesApi
     .createPopMovieGenres()
     .then(results => {
-      console.log(results);
+      // console.log(results);
       markup(results);
       const total = popularMoviesApi.totalPages;
       const paginationButtons = new PaginationButton(total, drawnPages);
